@@ -45,7 +45,7 @@ ng serve
 # Login credentials :
 
 ## Admin :
-* E-mail : shivam4uas@gmail.com
+* E-mail : ayushivam2@gmail.com
    Password : Shivam@12
    
  
