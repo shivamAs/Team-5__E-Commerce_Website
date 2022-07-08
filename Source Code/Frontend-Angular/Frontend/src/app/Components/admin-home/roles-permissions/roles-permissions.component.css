@@ -1,0 +1,50 @@
+/*wrapping up whole component*/
+.wrapper{
+    width:83vw;
+    height:100vh;
+   
+    box-sizing: border-box;
+    padding:1rem;
+    
+}
+
+/*start of styling for title*/
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.heading{
+    color: #ff971d;
+    font-family: Julius Sans One;
+    font-weight:  bolder;
+    text-shadow: red 1px 0 2px; 
+    text-decoration: underline;
+    text-decoration-color:crimson;
+  
+}
+/*end of styling of title*/
+
+
+/*styling of images*/
+.content{
+ margin-top: 10rem;;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+img{
+    width:200px;
+    height:200px;
+ 
+}
+.content div{
+  
+    flex-basis: 250px;;
+}
+
+h4{
+    margin-left:3rem;
+    color:coral;
+    font-weight: bolder;
+}

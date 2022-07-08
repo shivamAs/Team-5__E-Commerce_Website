@@ -1,0 +1,123 @@
+/*wrapper for whole component*/
+.wrapper{
+    width:84.3vw;
+    overflow: hidden;
+    box-sizing: border-box;
+    height:100vh;
+  
+   
+}
+
+/*styling for  whole content*/
+.content{
+    padding-top: 16rem;
+    background-color: crimson;
+    padding-bottom:21rem;
+
+}
+
+.upper-svg{
+    background-color: crimson;
+}
+
+/*styling of left include matter and heading*/
+.left{
+    float:left;
+    text-align: center;
+    padding-left:4rem;
+    margin-top:3rem;
+}
+
+/*styling of right include image*/
+.right{
+ margin-right: 10rem;;
+    float: right;
+}
+
+/*Styling of title*/
+.heading{
+    color: #ff971d;
+    font-family: Julius Sans One;
+    font-weight:  bolder;
+    margin-left: 10rem;
+    text-shadow: green 1px 0 2px; 
+    text-decoration: underline;
+    text-decoration-color:crimson;
+}
+p{
+    color:whitesmoke;
+    margin-left: 10rem;
+}
+img{
+    width:40rem;
+    height: 30rem;
+    margin-top: -5rem;
+    padding-right: 5rem;
+    padding-bottom: 1rem;
+    border-radius: 50%;
+    border-top:7px solid yellow;
+
+    border-right:white;
+   
+
+}
+img:hover{
+    border-top:none;
+    width:39rem;
+    box-shadow: 2px 2px 0px 2px slateblue;
+}
+/*Styling of content ends*/ 
+
+
+/*making it resonsive*/
+@media only screen and (max-width: 600px) {
+  .right{
+    margin-right: 0;;
+    float: none;
+    
+  }
+  .left{
+    float:none;
+    text-align: center;
+    padding-left:0;
+    margin-top:0;
+      
+      
+     
+  }
+  .content{
+    padding-top: 0;
+    background-color: crimson;
+    padding-bottom:0;
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.heading{
+    width:200px;
+    margin-left: 0;
+  text-align: center;
+}
+p{
+    width: 200px;
+    margin-left: 0;
+    text-align: center;
+}
+
+img{
+  width:215px;
+  height:190px;
+    margin-top: 0;
+    padding-right: 5rem;
+    padding-bottom: 1rem;
+    border-radius: 50%;
+    border-top:7px solid yellow;
+    border-right:white;
+
+}
+img:hover{
+    
+    box-shadow: 2px 2px 0px 2px slateblue;
+}
+  }

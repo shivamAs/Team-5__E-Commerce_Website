@@ -1,0 +1,103 @@
+<link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<div class="header" id="header">
+    <div style="flex: 30%;">
+        <div class="logo" *ngIf="showLogo" (click)="goToHome()">
+            <h1 (click)="goToHome()"><span></span><p>E</p><p>L</p><p>E</p><p>F</p>oods</h1>
+            <div class="top">
+                <div class="top2">
+                    <div class="e1"></div>
+                    <div class="l"></div>
+                    <div class="e2"></div>
+                </div>
+            </div>
+            <div class="bottom">
+                <div class="t1">Eat</div>
+                <div class="t2">Love</div>
+                <div class="t3">Enjoy</div>
+            </div>
+        </div>
+    </div>
+    <div class="options">
+        <div class="top">
+            <div class="searchBox">
+                <input type="text" placeholder="Search..." class="inputBox" [(ngModel)]="searchText">
+                <i class="fa fa-search" title="search" (click)="goToSearchItems()"></i>
+            </div>
+            <div class="user">
+                <i class="fa fa-user" *ngIf="!userLoggedIn" title="Login/Signup" (click)="login()"></i>
+            </div>
+        </div>
+        <div class="bottom" id="header-bottom1">
+            <div class="button" (click)="setFilter('Starters')"><span></span><a>STARTERS</a></div>
+            <div class="button" (click)="setFilter('Kebabs')"><span></span><a>KEBABS</a></div>
+            <div class="button" (click)="setFilter('Biryanis')"><span></span><a>BIRYANIS</a></div>
+            <div class="button" (click)="setFilter('Indian Breads')"><span></span><a>INDIAN BREADS</a></div>
+            <div class="button" (click)="setFilter('Curries')"><span></span><a>CURRIES</a></div>
+            <div class="button" (click)="setFilter('Desserts')"><span></span><a>DESSERTS</a></div>
+            <div class="button" (click)="setFilter('Beverages')"><span></span><a>BEVERAGES</a></div>
+        </div>
+        <div class="bottom" id="header-bottom2">
+            <select (change)="goToItems()" [(ngModel)]="filter">
+                <span></span>
+                <option selected disabled hidden value="">FOOD</option>
+                <option>
+                    <div class="button" (click)="goToItems()"><span></span><a>STARTERS</a></div>
+                </option>
+                <option>
+                    <div class="button" (click)="goToItems()"><span></span><a>KEBABS</a></div>
+                </option>
+                <option>
+                    <div class="button" (click)="goToItems()"><span></span><a>BIRYANIS</a></div>
+                </option>
+                <option>
+                    <div class="button" (click)="goToItems()"><span></span><a>INDIAN BREADS</a></div>
+                </option>
+                <option>
+                    <div class="button" (click)="goToItems()"><span></span><a>CURRIES</a></div>
+                </option>
+            </select>
+            <div class="button" (click)="setFilter('Desserts')"><span></span><a>DESSERTS</a></div>
+            <div class="button" (click)="setFilter('Beverages')"><span></span><a>BEVERAGES</a></div>
+        </div>
+    </div>
+
+    <div class="menu-button" *ngIf="userLoggedIn">
+        <div class="btn1">
+            <i class="fa fa-bars" style="animation: rotateIn 1s ease;" *ngIf="!showMenu" (click)="openMenu()"></i>
+            <i class="fa fa-close" style="animation: rotateOut 1s ease;" *ngIf="showMenu" (click)="closeMenu()"></i>
+        </div>
+    </div>
+    <div class="menu-extension" id="menuExtension" *ngIf="userLoggedIn">
+        <div class="bg">
+            <div class="myOrdersBtn" (click)="goToMyOrders()">
+                <i class="fas fa-tasks" title="My Orders"></i>
+            </div>
+            <div class="carryBoxBtn" (click)="goToMyCarryBox()">
+                <i class="fas fa-shopping-cart" title="My Carry Box"></i>
+            </div>
+            <div class="logoutBtn" (click)="logout()">
+                <i class="fas fa-sign-out-alt" title="Logout"></i>
+            </div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
+
+
+<!-- <div class="logo">
+    <h1>ELEFoods</h1>
+    <div class="top">
+        <div class="e1"></div>
+        <div class="l"></div>
+        <div class="e2"></div>
+    </div>
+    <div class="bottom">
+        <div class="t1">EAT</div>
+        <div class="t2">LOVE</div>
+        <div class="t3">ENJOY</div>
+    </div>
+</div> -->

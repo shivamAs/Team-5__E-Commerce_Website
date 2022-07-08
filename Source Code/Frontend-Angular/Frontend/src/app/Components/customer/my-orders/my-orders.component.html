@@ -1,0 +1,46 @@
+<div class="body">
+    <div class="homeBtn"><button class="btn btn-outline-dark" (click)="goToHome()">Back to home</button></div>
+
+    <div class="data">
+        <p id="tag">*click on an order to view the details of that order</p>
+        
+        
+        <!-- List of orders -->
+        <table class="table table-hover table-responsive" style="text-align: center;" *ngIf="orders">
+            <!-- Table Header Row -->
+            <tr style="background-image: linear-gradient(to right, lightgrey, whitesmoke)">
+                <th>Order Id</th>
+                <th>Date</th>
+                <th>Branch</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+
+            <!-- Displaying Orders placed from that account -->
+            <tr *ngFor="let obj of orders" (click)="trackOrder(obj.orderId)">
+                <td class="info">{{obj.orderId}}</td>
+                <td class="info">{{obj.orderDate}}</td>
+                <td class="name">{{obj.branch_order.branchCity}}({{obj.branch_order.branchRegion}})</td>
+                <td class="info">Rs. {{obj.orderPrice}}/-</td>
+
+                <!-- Order Status -->
+                <td class="info" style="color: blue;" *ngIf="obj.orderStatus=='Accepted'">{{obj.orderStatus}}</td>
+                <td class="info" style="color: blue;" *ngIf="obj.orderStatus=='Placed'">{{obj.orderStatus}}</td>
+                <td class="info text-danger" *ngIf="obj.orderStatus=='Rejected'">{{obj.orderStatus}}</td>
+                <td class="info text-success" *ngIf="obj.orderStatus=='Delivered'">{{obj.orderStatus}}</td>
+                
+                <!-- Details option to navigate to track order page -->
+                <td id="detailsBtn"><button class="btn btn-outline-dark"
+                        (click)="trackOrder(obj.orderId)">Details</button></td>
+            </tr>
+
+            <!-- Display message when no orders were placed from that user account -->
+            <tr *ngIf="orders.length==0">
+                <td colspan="4" class="text-danger text-center">
+                    <h5>No Orders from your account !!</h5>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

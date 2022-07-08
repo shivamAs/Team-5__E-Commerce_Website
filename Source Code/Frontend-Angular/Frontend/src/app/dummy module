@@ -1,0 +1,58 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SearchPipe } from './search.pipe';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { DashboardComponent } from './components/admin-home/dashboard/dashboard.component';
+import { OrdersComponent } from './components/admin-home/orders/orders.component';
+import { AddItemComponent } from './components/admin-home/add-item/add-item.component';
+import { AddCategoryComponent } from './components/admin-home/add-category/add-category.component';
+import { AddSubcategoryComponent } from './components/admin-home/add-subcategory/add-subcategory.component';
+import { RolesPermissionsComponent } from './components/admin-home/roles-permissions/roles-permissions.component';
+
+import {  HttpClientModule } from '@angular/common/http';
+import { CategoriesComponent } from './components/admin-home/categories/categories.component';
+import { SubcategoriesComponent } from './components/admin-home/subcategories/subcategories.component';
+import { ItemsComponent } from './components/admin-home/items/items.component';
+import { MergeArrayPipe } from './pipes/AdminPipes/merge-array.pipe';
+import { SearchSubCategoryPipe } from './pipes/AdminPipes/search-sub-category.pipe';
+import { SearchCategoryPipe } from './pipes/AdminPipes/search-category.pipe';
+
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    SearchPipe,
+    AdminHomeComponent,
+    DashboardComponent,
+    OrdersComponent,
+    AddItemComponent,
+    AddCategoryComponent,
+    AddSubcategoryComponent,
+    RolesPermissionsComponent,
+    CategoriesComponent,
+    SubcategoriesComponent,
+    ItemsComponent,
+    MergeArrayPipe,
+    SearchSubCategoryPipe,
+    SearchCategoryPipe
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+
+})
+
+export class AppModule { 
+
+}

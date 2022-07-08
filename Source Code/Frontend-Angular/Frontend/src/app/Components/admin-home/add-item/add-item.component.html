@@ -1,0 +1,305 @@
+
+<div class="wrapper">
+
+
+<!--   Division for adding a new item-->
+<div  *ngIf="select">
+>
+    <div class="form">
+     
+        <!-- Reactive form for adding a new Item-->
+        <form [formGroup] ="addItemForm">
+
+            <div><h3 class="heading">ADD ITEM</h3><span></span></div>
+
+            <!-- Message display for user understanding of added item successfully-->
+           <div *ngIf="addedItem" class="text-success" style="text-align: center;">Added Item successfully</div>
+
+             <!-- Message display for user understanding of not adding item successfully-->
+           <div *ngIf="item_name_already_exists" class="text-danger" style="text-align: center;" >Sorry.. Item with this name Already exists</div>
+            <div class="itemName form-group">
+
+                <!--start of item name-->
+                <label>Item Name</label>
+                <input class="form-control" type="text" name="itemName" formControlName="itemName" id="input" placeholder="Enter your item name">
+                
+                <!--Validations for item Name -->
+                <div  *ngIf="submitted && addItemForm.controls.itemName.errors"> 
+                    <div *ngIf="addItemForm.controls.itemName.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="addItemForm.controls.itemName.errors.pattern">
+                        <p id="pattern">Item name should contain only alphabets</p>
+                      
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addItemForm.controls.itemName.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!-- End of Item Name-->
+
+            <!--Start of Item Description-->
+            <div class="itemDescription">
+                <label>Item Description</label>
+                <input class="form-control"  type="text" name="itemDescription" formControlName="itemDescription" id="input" placeholder="Enter your item Description">
+                
+                <!-- Validation for item Description-->
+                <div *ngIf="submitted && addItemForm.controls.itemDescription.errors">
+                
+                    <div *ngIf="addItemForm.controls.itemDescription.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="addItemForm.controls.itemDescription.errors.pattern">
+                        <p id="pattern">Item Description should contain only aplhabets</p>
+                      
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addItemForm.controls.itemDescription.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!--End of Item Description-->
+
+            <!--Start of itemPrice-->
+            <div class="itemPrice">
+                <label>Item Price</label>
+                <input class="form-control"  type = "number" name="itemPrice" formControlName="itemPrice" id="input" placeholder="Enter your item Price">
+                
+                <!--Validation for itemPrice-->
+                <div *ngIf="submitted && addItemForm.controls.itemPrice.errors">
+                
+                    <div *ngIf="addItemForm.controls.itemPrice.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="addItemForm.controls.itemPrice.errors.min">
+                        <p id="pattern">Item price should be min of Rs.10/-</p>
+                    </div>
+                    <div *ngIf="addItemForm.controls.itemPrice.errors.max">
+                        <p id="pattern">Item priceshould be max Rs.1000/-</p>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addItemForm.controls.itemPrice.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!--End of Item Price-->
+           
+        
+            <!-- Start of Item Type-->
+            <div class="type">
+                <label>ItemType</label>
+                <select name="type" class="form-control" [(ngModel)]="selectedType"  formControlName="type" id="input">
+                    <option value="" disabled selected>Select item type</option>
+                    <option value="veg">veg</option>
+                    <option value="non-veg">non-veg</option>
+                </select>
+                <!--Validation of type-->
+                <div *ngIf="submitted && addItemForm.controls.type.errors">
+                
+                    <div *ngIf="addItemForm.controls.type.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addItemForm.controls.type.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!--End of type-->
+
+
+            <!-- Start of Speciality-->
+            <div class="speciality">
+                <label>Speciality</label>
+                <select name="speciality" class="form-control" [(ngModel)]="selectedSpeciality"  formControlName="speciality" id="input">
+                    <option value="" disabled selected>Select speciality</option>
+                    <option value="special">special</option>
+                    <option value="no-special">no-special</option>
+                </select>
+                <!--Validating speciality-->
+                <div *ngIf="submitted && addItemForm.controls.speciality.errors">
+                
+                    <div *ngIf="addItemForm.controls.speciality.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addItemForm.controls.speciality.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!-- End of Speciality-->
+          
+            <div class="subCategory">
+                <label>subCategory</label>
+                <select name="subCategory" class="form-control" [(ngModel)]="selectedSubCatgeory"  id="input" formControlName="subCategory">
+                    <option value="" disabled selected>Select subCategory</option>
+                    <option *ngFor="let subCategory_d of subCategories;"  [value]="subCategory_d?.subCategoryId">{{subCategory_d.subCategoryName}}</option>  
+                </select>
+                <div *ngIf="submitted && addItemForm.controls.subCategory.errors">
+                
+                    <div *ngIf="addItemForm.controls.subCategory.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addItemForm.controls.subCategory.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+    
+         <button class="submit form-control" (click)="addItem()" style="background-color: green;color:white"> Add Item</button>
+        </form>
+    </div>
+</div>
+<!-- End of Division of adding a new item-->
+
+
+
+<!--   Division for editing an existing item -->
+<div  *ngIf="!select">
+   
+    <div class="form">
+     
+        <!-- Reactive form for editing item-->
+        <form [formGroup] ="editItemForm">
+
+            <!-- Title for Editing Item-->
+            <div><h3 class="heading">EDIT ITEM</h3><span></span></div>
+
+            <!-- Message display for user understanding of added item successfully-->
+            <div *ngIf="edited" class="text-success">Edited Item successfully</div>
+
+            
+             <!-- Message display for user understanding of not adding item successfully-->
+            <div *ngIf="item_name_already_exists" class="text-danger" style="text-align: center;" >Sorry!! Item with this name Already exists</div>
+            
+           <!--Start of item Name-->
+            <div class="itemName">
+                <label>ItemName</label>
+                <input class="form-control" type="text" name="itemName" formControlName="itemName" id="input" placeholder="Enter your item name">
+                <!--Validations for item Name -->
+                <div *ngIf="submitted && editItemForm.controls.itemName.errors">
+                    
+                    <div *ngIf="editItemForm.controls.itemName.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="editItemForm.controls.itemName.errors.pattern">
+                        <p id="pattern">Item name should contain only aplhabets</p>
+                      
+                    </div>
+                </div>
+                <div *ngIf="submitted && !editItemForm.controls.itemName.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!-- End of item Name-->
+
+            <!-- Start of Item Description-->
+            <div class="itemDescription">
+                <label>Item Description</label>
+                <input class="form-control"  type="text" name="itemDescription" formControlName="itemDescription" id="input" placeholder="Enter your item Description">
+                
+                <!--Validating item Description-->
+                <div *ngIf="submitted && editItemForm.controls.itemDescription.errors">
+                
+                    <div *ngIf="editItemForm.controls.itemDescription.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="editItemForm.controls.itemDescription.errors.pattern">
+                        <p id="pattern">Item Description should contain only aplhabets</p>
+                      
+                    </div>
+                </div>
+                <div *ngIf="submitted && !editItemForm.controls.itemDescription.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!--End of item Description-->
+
+            <!-- Start of Item Price-->
+            <div class="itemPrice">
+                <label>Item Price</label>
+                <input class="form-control"  type = "number" name="itemPrice" formControlName="itemPrice" id="input" placeholder="Enter your item Price">
+               
+               <!-- Validating item Price-->
+                <div *ngIf="submitted && editItemForm.controls.itemPrice.errors">
+                
+                    <div *ngIf="editItemForm.controls.itemPrice.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="editItemForm.controls.itemPrice.errors.min">
+                        <p id="pattern">Item price should be min of Rs.10/-</p>
+                    </div>
+                    <div *ngIf="editItemForm.controls.itemPrice.errors.max">
+                        <p id="pattern">Item priceshould be max Rs.1000/-</p>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !editItemForm.controls.itemPrice.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!-- End of Item Price-->
+
+            <!--Start of Type of item-->
+            <div class="type">
+                <label>Type</label>
+                <select name="type" class="form-control" [(ngModel)]="selectedType"  formControlName="type" id="input">
+                    <option value="" disabled selected>Select item type</option>
+                    <option value="veg">veg</option>
+                    <option value="non-veg">non-veg</option>
+                </select>
+                <!-- Validating type -->
+                <div *ngIf="submitted && editItemForm.controls.type.errors">
+                
+                    <div *ngIf="editItemForm.controls.type.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !editItemForm.controls.type.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!--End of type-->
+
+
+            <!--Start of speciality-->
+            <div class="speciality">
+                <label>Speciality</label>
+                <select name="speciality" class="form-control" [(ngModel)]="selectedSpeciality"  formControlName="speciality" id="input">
+                    <option value="" disabled selected>Select speciality</option>
+                    <option value="special">special</option>
+                    <option value="no-special">no-special</option>
+                </select>
+                <!-- Validating Speciality-->
+                <div *ngIf="submitted && editItemForm.controls.speciality.errors">
+                
+                    <div *ngIf="editItemForm.controls.speciality.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !editItemForm.controls.speciality.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!--End of speciality-->
+          
+
+         7
+         <button class="submit form-control" (click)="editItem()" style="background-color: green;color:white"> Edit Item</button>
+        </form>
+
+        <!--End of form of editing a new item-->
+    </div>
+</div>
+
+</div>

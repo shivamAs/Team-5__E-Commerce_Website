@@ -1,0 +1,283 @@
+/* overall body design */
+.content{
+    width: 100%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+/* Heading design */
+.headRow{
+    flex: 100%;
+    width: 100%;
+    margin-top: 4vh;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #29150e;
+}
+
+.headRow .left{
+    flex: 25%;
+    text-align: center;
+}
+
+.headRow .right{
+    flex: 75%;
+    text-align: center;
+}
+
+.headRow .right h3{
+    margin-right: 20%;
+}
+
+
+
+.data{
+    flex: 100%;
+    display: flex;
+}
+
+.data .left{
+    flex: 60%;
+    height: 75vh;
+    border-right: 1px solid #29150e;
+}
+
+/* List of items in the order design */
+.data .right{
+    flex: 40%;
+    height: 75vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    transform: scale(0.8);
+}
+
+th{
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: 'Julius Sans One';
+    text-shadow: 1px 0 1px rgba(45,21,14,0.75);
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+td{
+    vertical-align: middle;
+}
+
+.name{
+    font-size: 25px;
+    font-family: ubuntu;
+    color: #29150e;
+}
+
+.info{
+    font-size: 20px;
+    font-family: ubuntu;
+    color: #29150e;
+}
+
+.total{
+    font-size: 25px;
+    font-family: 'Julius Sans One';
+    font-weight: bolder;
+    color: #29150e;
+    text-align: right;
+}
+
+.total span{
+    font-weight: bold;
+    font-family: 'Marcellus';
+}
+
+
+.data .left .left-top {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #29150e;
+
+}
+
+
+/* Address and orderdetails design */
+.data .left .left-bottom {
+    width: 100%;
+    height: 35vh;
+    display: flex;
+    align-items: center;
+    font-family: 'Trebuchet MS';
+    justify-content: space-around;
+    flex-wrap: nowrap;
+}
+
+
+
+/* Status bar of the order */
+.step_progressbar{
+    display: block;
+    width: 90%;
+    color: #29150e;
+    font-family: 'Trebuchet MS';
+}
+
+.step_progressbar ul{
+    display: block;
+    list-style: none;
+    align-items: center;
+    justify-content: space-between;
+    display: flex;
+    counter-reset: step;
+}
+
+.step_progressbar ul li{
+    display: inline-block;
+    position: relative;
+    width: 25%;
+    text-align: center;
+    margin: 15px 0;
+}
+
+.step_progressbar ul li::before{
+    display: block;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    line-height: 50px;
+    background-color: rgb(216, 216, 216);
+    text-align: center;
+    content: counter(step);
+    counter-increment: step;
+    margin: 10px auto;
+    position: relative;
+    z-index: 2;
+    font-size: 20px;
+}
+
+.step_progressbar ul li.active,
+.step_progressbar ul li.semiActive{
+    color: #29150e;
+    font-weight: bolder;
+}
+
+.step_progressbar ul li::after{
+    content: "";
+    width: 100%;
+    height: 3px;
+    position: absolute;
+    background-color: rgb(216, 216, 216);
+    top: 35px;
+    left: -50%;
+    z-index: 1;
+}
+
+.step_progressbar ul li:first-child::after{
+    content: none;
+}
+
+.step_progressbar ul li.active + li::after{
+    background-color: #29150e;
+}
+
+
+.step_progressbar ul li.active::before,
+.step_progressbar ul li.semiActive::before{
+    background-color: #29150e;
+    color: white;
+}
+
+
+
+
+
+/* Responsive design for Ipad,Tab */
+@media (max-width:900px){
+        
+    .data{
+        flex-wrap: wrap;
+    }
+    .data .left{
+        flex: 100%;
+    }
+    
+
+    .data .right{
+        flex: 100%;
+    }
+
+    .step_progressbar{
+        width: 115%;
+    }
+
+    .step_progressbar ul li::before{
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 20px;
+    }
+
+    .step_progressbar ul li::after{
+        height: 2px;
+        top: 25px;
+    }
+
+    .step_progressbar ul li{
+        margin: 10px auto;
+        font-size: 16px;
+    }
+
+    .headRow .right h3{
+        margin-right: 10%;
+    }
+}
+
+
+
+/* Responsive design for mobile */
+@media (max-width:600px){
+    .data
+    {
+        transform: scale(0.95);
+    }
+       
+    .step_progressbar{
+        width: 115%;
+        margin-left: -15%;
+    }
+
+    th{
+        font-size: 18px;
+    }
+    
+    img{
+        width: 60px;
+        height: auto;
+    }
+    
+    .name{
+        font-size: 18px;
+    }
+    
+    .info{
+        font-size: 16px;
+    }
+    
+    .total{
+        font-size: 18px;
+    }
+ 
+    .headRow .right h3{
+        margin-right: 5%;
+    }
+}
+

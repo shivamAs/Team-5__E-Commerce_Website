@@ -1,0 +1,80 @@
+<div style="transform: scale(0.75);">
+    <div class="left" style="background: linear-gradient(to bottom, #0099cc 0%, #000066 100%);height: 1150px;">
+        <form [formGroup]="forgotForm" (ngSubmit)="verifyUser()" class='card'
+            style="margin-top: 18%;width: 80rem;margin-left: 10%">
+
+            <h1 class="text-dark">
+                <img src="\assets\Images\forgot.jpg" width="25%" style="margin-left: 2%;margin-top: 2%" />
+                <b>Verification For Password Reset</b>
+            </h1>
+            <br />
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-user"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="emailId" placeholder="ex: abc@gmail.com" />
+
+                    <div *ngIf="submitted && forgotForm.controls.emailId.errors">
+                        <div class="text-danger" *ngIf="forgotForm.controls.emailId.errors.required">
+                            <font size="5">Email Id is required ..!</font>
+                        </div>
+                        <div class="text-danger" *ngIf="forgotForm.controls.emailId.errors.email">
+                            <font size="5">Email Id must follow the required pattern!!</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-question-sign"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <div>
+                        <select id="question" class="form-control" formControlName="question">
+                            <option value="">Select Security Question</option>
+                            <option value="What is your hobby?">What is your hobby?</option>
+                            <option value="What is your mother's name?">What is your mother's name?</option>
+                            <option value="What is the name of your school?">What is the name of your school?</option>
+                            <option value="what is your favourite food">what is your favourite food</option>
+                            <option value="What is your favourite subject?">What is your favourite subject?</option>
+                        </select>
+                        <div *ngIf="submitted && forgotForm.controls.question.errors" class="error">
+                            <div class="text-danger" *ngIf="forgotForm.controls.question.errors.required">
+                                <font size="5">Security Question is required ..</font>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-pencil"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="answer" placeholder="Your answer" />
+
+                    <div *ngIf="submitted && forgotForm.controls.answer.errors">
+                        <div class="text-danger" *ngIf="forgotForm.controls.answer.errors.required">
+                            <font size="5">Security answer is required ..!</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="offset-lg-4 col-lg-6 offset-md-4 col-md-6 offset-sm-4 col-sm-6">
+                <button class="btn btn-success" style="border-radius: 30%">
+                    <font size="5">Submit</font>
+                </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-danger" type="reset" style="border-radius: 30%">
+                    <font size="5">Reset</font>
+                </button> <br />
+                <br />
+            </div>
+        </form>
+    </div>
+    <div class="right">
+        <img src="\assets\Images\forgot.gif" width="100%" height="1150px">
+    </div>
+</div>

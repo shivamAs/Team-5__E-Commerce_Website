@@ -1,0 +1,91 @@
+/*wrapper for whole component*/
+.wrapper{
+    width:83vw;
+    box-sizing: border-box;
+    padding:1rem;
+}
+
+/*start of styling of title*/
+.title{
+    display: flex;
+    justify-content: center;
+}
+.heading{
+    color: #ff971d;
+    margin-left: 4rem;
+    margin-bottom: 2rem;
+    font-family: Julius Sans One;
+    font-weight:  bolder;
+    text-transform: uppercase;
+    text-shadow: red 1px 0 2px; 
+    text-decoration: underline;
+    text-decoration-color:crimson;
+    
+}
+/*End of styling of title*/
+
+/*Start of styling of table*/
+table{
+    margin-left:10%;
+    width:80%;
+}
+thead{
+    color:crimson
+}
+button{
+    border:1px solid yellow;
+    background-color: #5f8a8b;
+    color:white
+
+
+}
+button:focus, button:hover{
+    border:none;
+    box-shadow: none;
+}
+
+.error{
+    text-align: center;
+    font-weight: bold;
+}
+.form{
+   
+    width:25%;
+}
+.edit{
+    display: flex;
+    justify-content: center;
+}
+button:hover{
+    opacity: 0.9;
+}
+/*End of table styling*/
+
+/*Start of search Styling*/
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#search{
+    padding:0.3rem;
+    text-align: center;
+    border-radius:1rem;
+    border:1.5px solid coral;
+    width:270px;
+  
+}
+
+#search:focus{
+    outline: none;
+    box-shadow: 2px 2px 1px 1px coral;
+    
+}
+/*End of Search styling*/
+
+
+/* styling of label in the form*/
+label{
+    color:darkblue;
+    margin-bottom: -4px;
+}

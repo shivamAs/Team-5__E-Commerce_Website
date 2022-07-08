@@ -1,0 +1,68 @@
+
+<!--start of wrapper for whole component-->
+<div class="wrapper ">
+   
+    <div class="form">
+        <!--Reactive form for adding a subcategory-->
+        <form [formGroup] ="addSubCategoryForm">
+            <div><h3 class="heading">ADD CATEGORY</h3><span></span></div>
+
+            <!-- Displaying message if sub category is added successfully-->
+            <div *ngIf="added" class="text-success" style="text-align: center;">Added Sub Category Succesfully</div>
+            <!-- Message display for user understanding of not adding subcategory successfully-->
+            <div *ngIf="subCategory_name_already_exists" class="text-danger" style="text-align: center"> Sorry..Sub Category with this name already exists</div>
+           
+
+            <!--starting of subCategory Name-->
+            <div class="subCategoryName">
+               <label>Sub Category Name</label>
+                <input class="form-control" type="text" name="subCategoryName" formControlName="subCategoryName" id="input" placeholder="Enter SubCategory name">
+               
+               <!-- Validations for subcategory Name-->
+                <div *ngIf="submitted && addSubCategoryForm.controls.subCategoryName.errors">
+                    
+                    <div *ngIf="addSubCategoryForm.controls.subCategoryName.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="addSubCategoryForm.controls.subCategoryName.errors.pattern">
+                        <p id="pattern">sub category name should contain only aplhabets</p>
+                      
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addSubCategoryForm.controls.subCategoryName.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!-- End of sub-category name-->
+
+
+            <!-- Start of selecting category-->
+            <div class="category">
+                <label>Category</label>
+                <select name="category" class="form-control" [(ngModel)]="selectedCategory"  id="input" formControlName="category">
+                    <option value="" disabled selected>Select subCategory</option>
+                    <option *ngFor="let category_d of categories;"  [value]="category_d?.categoryId">{{category_d.categoryName}}</option>  
+                </select>
+                <!--Validation for selecting category-->
+                <div *ngIf="submitted && addSubCategoryForm.controls.category.errors">
+                
+                    <div *ngIf="addSubCategoryForm.controls.category.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addSubCategoryForm.controls.category.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div> 
+            </div>
+            <!-- End of selecting category-->
+
+           
+         <button class="submit form-control" (click)="addSubCategory()" style="background-color: green;color:white"> Add Sub Category</button>
+
+        </form>
+    </div>
+</div>
+
+<!--End of wrapper for whole component-->

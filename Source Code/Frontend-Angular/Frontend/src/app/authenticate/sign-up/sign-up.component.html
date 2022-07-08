@@ -1,0 +1,206 @@
+
+<div style="transform: scale(0.75);">
+    <div class="right"> 
+        <form [formGroup]="addForm" (ngSubmit)="verify()" class='card'
+            style="margin-top: 2%;width: 100rem;margin-left: 6%">
+            <div>
+                <h1 style="margin-left: 8%">
+                    <img src="\assets\Images\signup.png" width="20%" style="margin-top: 2%" />
+                    &nbsp;
+                    <b>New User Sign Up Form</b>
+                </h1>
+                <br />
+                <br />
+            </div>
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-user"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="name" placeholder="Full Name" />
+                    <div *ngIf="submitted && addForm.controls.name.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.name.errors.required">
+                            <font size="5"> Name is required</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.name.errors.hasNumber">
+                            <font size="5">Name cannot contain numeric values</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.name.errors.hasCapitalCase">
+                            <font size="5">First letter of each word should be capital</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.name.errors.hasSpecialCharacters">
+                            <font size="5"> Name cannot contain special characters</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-envelope"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="email" class="form-control" formControlName="emailid" placeholder="Email Address" />
+
+                    <div *ngIf="submitted && addForm.controls.emailid.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.emailid.errors.required">
+                            <font size="5">Email is required</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.emailid.errors.email">
+                            <font size="5">Email must follow the required pattern</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-lock"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+                    <div *ngIf="submitted && addForm.controls.password.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.required">
+                            <font size="5"> Password is required </font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.minlength">
+                            <font size="5">Password must contain minimum of 8 characters</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.hasNumber">
+                            <font size="5"> Password must contain atleast one numeric value</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.hasCapitalCase">
+                            <font size="5">Password must contain atleast one Capital letter</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.hasSmallCase">
+                            <font size="5"> Password must contin atleast one Small letter</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.password.errors.hasSpecialCharacters">
+                            <font size="5"> Password must contain atleast one special character</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-question-sign"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <div>
+                        <select id="question" class="form-control" formControlName="question">
+                            <option value="">Select Security Question</option>
+                            <option value="What is your hobby?">What is your hobby?</option>
+                            <option value="What is your mother's name?">What is your mother's name?</option>
+                            <option value="What is the name of your school?">What is the name of your school?</option>
+                            <option value="What is your favourite subject?">What is your favourite subject?</option>
+                            <option value="what is your favourite food">what is your favourite food</option>
+                        </select>
+                        <div *ngIf="submitted && addForm.controls.question.errors" class="error">
+                            <div class="text-danger" *ngIf="addForm.controls.question.errors.required">
+                                <font size="5">Security Question is required </font>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-pencil"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="answer"
+                        placeholder="Your answer" />
+
+                    <div *ngIf="submitted && addForm.controls.answer.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.answer.errors.required">
+                            <font size="5">Security answer is required </font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="fa fa-address-card"></i>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="line1"
+                        placeholder="Your address" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                <i class="fa fa-address-card"></i>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="line2"
+                        placeholder="Your address Line 2" />
+                </div>
+            </div>
+            <br />
+            <div class="form-group row" style="margin-left:10%">
+                    <i class="fa fa-map-marker"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div class="col-sm-7">
+                        <input type="text" class="form-control" formControlName="landmark"
+                            placeholder="Landmark" />
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row" style="margin-left:10%">
+                        <i class="fa fa-building"></i>&nbsp;&nbsp;&nbsp;
+                        <div class="col-sm-7">
+                                <select id="city" class="form-control" formControlName="city">
+                                        <option value="">Select Your City</option>
+                                        <option value="Kolkata">Kolkata</option>
+                                        <option value="Mumbai">Mumbai</option>
+                                        <option value="New Delhi">New Delhi</option>
+                                        <option value="Pune">Pune</option>
+                                        <option value="Bengaluru">Bengaluru</option>
+                                        <option value="Indore">Indore</option>
+                                </select>
+                        </div>
+                    </div>
+           
+            <div class="form-group row" style="margin-left:10%">
+                <i class="glyphicon glyphicon-phone"></i>
+                <font size="6" color="red"> *</font>
+                <div class="col-sm-7">
+                    <input type="text" class="form-control" formControlName="phonenumber" placeholder="Phone Number" />
+
+                    <div *ngIf="submitted && addForm.controls.phonenumber.errors">
+                        <div class="text-danger" *ngIf="addForm.controls.phonenumber.errors.required">
+                            <font size="5">Phone Number is required ..</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.phonenumber.errors.pattern">
+                            <font size="5">Phone Number must start with 6,7,8 or 9 and must contain 10 digits..
+                            </font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.phonenumber.errors.hasSpecialCharacters">
+                            <font size="5">Phone Number cannot have special characters ..</font>
+                        </div>
+                        <div class="text-danger" *ngIf="addForm.controls.phonenumber.errors.hasLetters">
+                            <font size="5">Phone Number cannot have letters ..</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+        
+            <div class="form-group row" style="margin-left:5%">
+                <div class="col-sm-8 offset-sm-3">
+                    <br />
+                    <button class="btn btn-success" style="border-radius: 30%">
+                        <font size="5">Save</font>
+                    </button> &nbsp; &nbsp;
+                    <button class="btn btn-danger" style="border-radius: 30%" type="reset">
+                        <font size="5">Reset</font>
+                    </button> &nbsp; &nbsp;
+                    <br />
+                    <font size="4" color="blue" size="5">Already have an account?&nbsp;
+                        <a routerLink="/authenticate/login">
+                            <font size="5" color="black">Login</font>
+                        </a>
+                    </font>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="left">
+            <img src="\assets\Images\imagerest.jpg" width="100%" height="1165px" />    
+    </div>
+</div>

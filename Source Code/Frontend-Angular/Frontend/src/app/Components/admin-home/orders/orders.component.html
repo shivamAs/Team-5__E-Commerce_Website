@@ -1,0 +1,156 @@
+
+ 
+<div class="wrapper"  >
+
+
+    <!--Start of loader-->
+    <div class="main_div" *ngIf="updating">
+        <div class="center_div">
+            <span class="loader"></span>
+        </div>
+       <label style="position: absolute;"> updating..</label>
+    </div>
+    <!--End of loader-->
+
+<div *ngIf="!updating">
+<div class="left">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <font size='3'>New Orders</font>
+                <span class="badge badge-pill badge-info">{{count}}</span>
+
+            </div>
+
+        </div>
+    </div>
+    <br>
+
+    <div class="card">
+        <p style="padding-top: 2px; padding-left: 10px;font-family: Julius sans One; font-size: 40px;"><img
+                class="round-circle" src="assets/Images/download.png" style="height: 100px;">New Orders
+        </p>
+        <div *ngFor="let order of placedOrder">
+            <div class="card offset-sm-1" style="border-right: 0ch;">
+                <div class="row">
+                    <div class="col" style="padding-left: 5%; padding-top: 2%; font-family: noto;">
+                        <b>
+                            <font size="4">Order Id:{{order[0].orderId}}</font>
+                        </b>
+                        <table class="table" border="0" style="background-color:rgba(0,0,0,0);">
+                            <thead>
+
+                                <th style="text-align: center">
+                                    <font size="3"><b>Item Name</b></font>
+                                </th>
+                                <th style="text-align: center">
+                                    <font size="3"><b>Quantity</b></font>
+                                </th>
+                                <th style="text-align: center">
+                                    <font size="3"><b>Item Price</b></font>
+                                </th>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let order1 of order">
+
+
+                                    <td style="text-align: center">
+                                        <font size="3" color="black"><b>{{order1.item.itemName}}</b></font>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <font size="3" color="black"><b>{{order1.item.quantity}}</b></font>
+                                    </td>
+                                    <td style="text-align: center">
+                                        <font size="3" color="black"><b>Rs.{{order1.item.itemPrice}}</b></font>
+                                    </td>
+                                
+                                </tr>
+                                <tr>
+                                    <td style="text-align: center" colspan="3">
+                                        <font size="3"  color="black"><b>{{order[0].address.line1}},{{order[0].address.line2}},<br>{{order[0].address.landmark}}</b></font>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="offset-sm-9 col-sm-3">
+                            <div style="display: inline-flex;margin-left:-4rem">
+                            <button class="btn btn-success" (click)="updateStatus(order[0].orderId,'Accepted')">Accept</button>&nbsp;&nbsp;
+                            <button class="btn btn-danger" (click)="updateStatus(order[0].orderId,'Rejected')" >Reject</button>
+                        </div>
+                        </div>
+
+                    </div>
+                </div><br>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="right">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <font size='3'>Active Orders</font>
+                    <span class="badge badge-pill badge-info">{{count1}}</span>
+
+                </div>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="card">
+            <p style="padding-top: 2px; padding-left: 10px;font-family: Julius sans One; font-size: 40px;"><img
+                    class="round-circle" src="assets/Images/images.png" style="height: 100px;">Active Orders
+            </p>
+            <div *ngFor="let order of activeOrder">
+                <div class="card offset-sm-1" style="border-right: 0ch;">
+                    <div class="row">
+                        <div class="col" style="padding-left: 5%; padding-top: 2%; font-family: noto;">
+                            <b>
+                                <font size="4">Order Id:{{order[0].orderId}}</font>
+                            </b>
+                            <table class="table" border="0" style="background-color:rgba(0,0,0,0);">
+                                <thead>
+
+                                    <th style="text-align: center">
+                                        <font size="3"><b>Item Name</b></font>
+                                    </th>
+                                    <th style="text-align: center">
+                                        <font size="3"><b>Quantity</b></font>
+                                    </th>
+                                    <th style="text-align: center">
+                                        <font size="3"><b>Item Price</b></font>
+                                    </th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let order1 of order">
+
+
+                                        <td style="text-align: center">
+                                            <font size="3" color="black"><b>{{order1.item.itemName}}</b></font>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <font size="3" color="black"><b>{{order1.item.quantity}}</b></font>
+                                        </td>
+                                        <td style="text-align: center">
+                                            <font size="3" color="black"><b>Rs.{{order1.item.itemPrice}}</b></font>
+                                        </td>
+
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="offset-sm-9 col-sm-3">
+                                <button class="btn btn-success" style="margin-left: -4rem;" (click)="updateStatus(order[0].orderId,'Delivered')">Mark as Delivered</button>&nbsp;&nbsp;
+                            </div>
+
+                        </div>
+                    </div><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

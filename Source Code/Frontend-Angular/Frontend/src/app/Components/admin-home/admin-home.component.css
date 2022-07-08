@@ -1,0 +1,208 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+   
+}
+/* Start of sidebar */
+.sidebar{
+    width:240px;
+    position: fixed;
+   /* background-color:  rgba(41,21,14,0.9);*/
+   background-color:  #1b262c;
+    height: 100vh;
+    padding:0.2em;
+    padding-right: 0;
+    overflow: hidden;
+  
+    
+}
+.title-main {
+    width: 100vw;
+    display: grid;
+    
+}
+
+.title ul {
+    color: white;
+    display: flex;
+    list-style: none;
+    font-size: 40px;
+    font-weight: 500;
+    padding:1.8rem;
+    padding-left: 2.8rem;
+    border-bottom: 1px solid whitesmoke;
+
+}
+.title ul li{
+    text-transform: uppercase;
+    padding-left:1.5rem;
+    animation: light 2.0s linear infinite;
+}
+
+@keyframes light{
+    0%{
+        color:crimson;
+        text-shadow: none;
+    }
+    90%{
+        color:crimson;
+        text-shadow: none;
+    }
+    100%{
+        color:white;
+        text-shadow: 0 0 0.8rem #f5efef,0 0 0.8rem ;
+    }
+
+}
+.title ul li:nth-child(1){animation-delay: 0s;}
+.title ul li:nth-child(2){animation-delay: 0.2s;}
+.title ul li:nth-child(3){animation-delay: 0.4s;}
+.title ul li:nth-child(4){animation-delay: 0.6s;}
+
+
+.sidebar-links li{
+    color: rgb(245, 245,245);
+    list-style: none;
+    padding: 1.5rem;
+  
+    border-bottom: 1px solid rgba(245, 245,245,0.4);
+}
+
+.sidebar-links a{
+    color: #f9fcfb;
+}
+
+h6{
+    color:rgb(245, 245,245);
+    padding: 20px
+}
+.sidebar-links .dropdown-toggle {
+    color: #ff971d;
+    
+}
+
+.collapse li{
+    border-bottom : 1px solid #ff971d;
+    padding-left: 1.2rem;
+    
+}
+.collapse li:last-child{
+    border-bottom : none
+    
+}
+.collapse a{
+    color: white;
+    
+}
+a:hover{
+    opacity: 0.5;
+}
+
+/*End of styling sidebar*/
+
+
+
+
+/* styling content for router-outlet */
+.content{
+  position: relative;
+    left:240px;
+    min-height: 100vh;
+}
+
+
+
+
+/*Styling For responsiveness*/
+@media only screen and (max-width: 768px){
+    .sidebar{
+       
+        width:110px;
+        padding:0em;
+        z-index:999;
+    }
+  
+    .content{
+       
+        left:110px;
+        
+    }
+    .sidebar-links li{
+        padding-left: 0.8rem;
+    }
+    .sidebar h3{
+  
+        color: crimson;
+        padding :15px;
+        padding-left: 10px;
+        
+        border-bottom: 1px solid white;
+        
+    }
+    .collapse {
+        font-size: 12px;
+        
+    }
+
+    .title ul{
+       
+        padding-left: 1rem;
+        font-size: xx-large;
+    }
+    .title ul li{
+        padding-left: 0.2rem;
+    }
+ 
+}
+@media screen and (max-device-width: 481px) { 
+
+    .sidebar{
+       
+        width:80px;
+        padding:0.01em;
+        z-index:999;
+    }
+  
+    .content{
+    left:80px
+        
+    }
+    .sidebar-links li{
+        padding-left: 0.1rem;
+        font-size: 1.15rem;
+    }
+    h3{
+        font-size: 18px;
+    }
+    .sidebar h3{
+  
+        color: crimson;
+        padding :15px;
+        padding-left: 10px;
+        
+        border-bottom: 1px solid white;
+        
+    }
+    .title ul{
+      
+        padding-left: 0.5rem;
+        font-size: x-large;
+
+    }
+    .collapse {
+        font-size: 10px;
+
+    }
+     
+    .collapse li{
+        padding-left: 0.1rem;
+    }
+}

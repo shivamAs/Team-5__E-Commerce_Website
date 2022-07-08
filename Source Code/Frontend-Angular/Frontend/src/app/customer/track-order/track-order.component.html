@@ -1,0 +1,63 @@
+<div class="content">
+    <div class="headRow">
+        <div class="left">
+            <button class="btn btn-secondary" (click)="myOrders()">Go Back</button>
+        </div>
+        <div class="right">
+            <h3>Order Id : <b>{{orderId}}</b></h3>
+        </div>
+    </div>
+    <div class="data">
+        <div class="left">
+            <div class="left-top">
+                <div class="step_progressbar">
+                    <ul>
+                        <li id="step1">Order<br>Placed</li>
+                        <li id="step2">Order<br>Accepted</li>
+                        <li id="step3">Cooking,<br>On the Way</li>
+                        <li id="step4">Delivered<br>&nbsp;</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="left-bottom">
+                <div>
+                    <b><u>Order Placed </u>:</b><br><b>On - </b>{{order[0].orderDate}}<br>
+                    <b>At - </b>{{order[0].orderTime}}
+                </div>
+                <div>
+                    <b><u>Billing Address </u>:</b><br>
+                    {{order[0].address.name}}<br>
+                    {{order[0].address.line1}},<br>
+                    {{order[0].address.line2}},<br>
+                    {{order[0].address.city}}.
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <table class="table table-hover table-responsive" style="text-align: center;">
+                    <tr style="background-image: linear-gradient(to right, lightgrey, whitesmoke)">
+                        <th colspan="2">Item</th>
+                        <th>Cost</th>
+                        <th>Quantity</th>
+                    </tr>
+                    <tr *ngFor="let obj of order">
+                        <td><img src="assets/Images/{{obj.item.picture}}"></td>
+                        <td class="name">{{obj.item.itemName}}</td>
+                        <td class="info">{{obj.item.itemPrice}}/-</td>
+                        <td class="info">{{obj.quantity}}</td>
+                    </tr>
+                    <tr style="border-top: 2px solid #29150e;border-bottom: 2px solid #29150e;" *ngIf="order.length>0">
+                        <td colspan="2"></td>
+                        <td colspan="2" class="total">Total = <span>Rs. {{order[0].orderPrice}}/-</span></td>
+                    </tr>
+                    <tr *ngIf="order.length==0">
+                        <td colspan="4" class="text-danger text-center">
+                            <h5>No Items in your Carry Box !!</h5>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

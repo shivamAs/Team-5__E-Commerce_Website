@@ -1,0 +1,106 @@
+<link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+
+<!-- Header -->
+<div class="header" id="header" *ngIf="!showPopup">
+    <div style="flex: 30%;position: relative;">
+
+        <!-- Logo -->
+        <div class="logo" (click)="goToHome()" id="mainLogo">
+            <h1><span></span>
+                <p>E</p>
+                <p>L</p>
+                <p>E</p>
+                <p>F</p>oods
+            </h1>
+            <div class="top">
+                <div class="top2">
+                    <div class="e1"></div>
+                    <div class="l"></div>
+                    <div class="e2"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Branch -->
+        <div class="branch">
+            <button class="btn btn-outline-light" (click)="setLocation()"><i class="fa fa-map-marker"></i>&nbsp;{{currentBranch}}</button>
+        </div>
+
+        <!-- Home Button -->
+        <button class="btn btn-light" id="homeBtn" (click)="goToHome()" style="position: absolute; top: 25px;left: 5px;font-size: 10px;padding:2px"><i class="fa fa-home"></i></button>
+    </div>
+
+    <!-- Header right side options like search bar, category list etc.. -->
+    <div class="options">
+        <div class="top">
+            <div class="searchBox">
+                <input type="text" placeholder="Search..." class="inputBox" [(ngModel)]="searchText">
+                <i class="fa fa-search" title="search" (click)="goToSearchItems()"></i>
+            </div>
+            <div class="user">
+                <i class="fa fa-user" *ngIf="!userLoggedIn" title="Login/Signup" (click)="login()"></i>
+            </div>
+        </div>
+
+        <!-- Responsive header of laptop and PCs -->
+        <div class="bottom" id="header-bottom1">
+            <div class="button" *ngFor="let obj of subCategories" (click)="setFilter(obj.subCategoryName)"><span></span><a>{{obj.subCategoryName}}</a></div>
+        </div>
+
+
+        <!-- Responsive header of Ipad,tab and Mobile -->
+        <div class="bottom" id="header-bottom2">
+            <select (change)="goToItems()" [(ngModel)]="filter">
+                <span></span>
+                <option selected disabled hidden value="">MENU</option>
+                <option *ngFor="let obj of subCategories" value="{{obj.subCategoryName}}">
+                    <div class="button" (click)="goToItems()"><span></span><a>{{obj.subCategoryName}}</a></div>
+                </option>
+            </select>
+        </div>
+    </div>
+
+
+    <!-- User Menu Button visible only when user is logged in -->
+    <div class="menu-button" *ngIf="userLoggedIn">
+        <div class="btn1">
+            <i class="fa fa-bars" style="animation: rotateIn 1s ease;" *ngIf="!showMenu" (click)="openMenu()"></i>
+            <i class="fa fa-close" style="animation: rotateOut 1s ease;" *ngIf="showMenu" (click)="closeMenu()"></i>
+        </div>
+    </div>
+
+    <!-- User menu options visible on clinking the user menu button -->
+    <div class="menu-extension" id="menuExtension" *ngIf="userLoggedIn">
+        <div class="bg">
+            <div class="myOrdersBtn" (click)="goToMyOrders()">
+                <i class="fas fa-user-circle" title="My Orders"></i>
+            </div>
+            <div class="carryBoxBtn" (click)="goToMyCarryBox()">
+                <i class="fas fa-shopping-cart" title="My Carry Box"></i>
+            </div>
+            <div class="logoutBtn" (click)="logout()">
+                <i class="fas fa-sign-out-alt" title="Logout"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="popup" *ngIf="showPopup">
+    <div class="selectLocation">
+        <label ><h5><u>Select Your Location</u></h5></label>
+        <select (change)="changeLocation()" [(ngModel)]="currentLocation">
+            <option *ngFor="let obj of branches" value="{{obj.branchId}}">{{obj.branchCity}}({{obj.branchRegion}})</option>
+        </select>
+        <button class="btn btn-success" (click)="closePopup()">Continue</button>
+    </div>
+</div>
+
+<!-- Child Components -->
+<div *ngIf="!showPopup">
+    <router-outlet></router-outlet>
+</div>

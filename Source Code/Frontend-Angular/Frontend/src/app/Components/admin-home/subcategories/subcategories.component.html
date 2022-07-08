@@ -1,0 +1,91 @@
+
+
+<div class="wrapper" >
+
+  <!--Start of division of table-->
+    <div class="title"><h3 class="heading">Sub-Categories</h3><span></span></div>
+
+    <!--Start of search bar-->
+    <div class="search"><input type="text"  id="search" placeholder="enter your search text"  [(ngModel)]="searchText">
+      <i style="color: coral;font-size: larger;position: relative;left:-2rem;" class="fa fa-search"></i>{{searchText}}</div>
+     <!--End of search bar-->
+
+     <!-- Message to user if subcategory linked with other-->
+      <div *ngIf="child_records_found" class="error">
+      <p class="text-danger">Sorry!!! This sub-category contains items linked to it.</p>
+    </div>
+
+
+    <!-- Filtering subcategoring through search text and displaying-->
+    <ng-container *ngIf = "(subCategories| searchSubCategory: searchText) as result" >
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Sub-Category Id</th>
+        <th scope="col">Sub-Category Name</th>
+        <th scope="col">Action 1</th>
+        <th scope="col">Action 2</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      <!--Looping through the subcategories and displaying-->
+      <tr *ngFor="let subCategory of result ">
+        <th scope="row">{{subCategory.subCategoryId}}</th>
+        <td>{{subCategory.subCategoryName}}</td>
+        <td><button (click)="updateSubCategory(subCategory.subCategoryId)">Edit</button></td>
+        <td><button (click)="deleteSubCategory(subCategory.subCategoryId)">Delete</button></td>
+      </tr>
+  
+    </tbody>
+  </table>
+</ng-container>
+</div>
+<!--End of division of table-->
+
+
+<!-- start of division of editing if chosen -->
+<div class="wrapper edit" *ngIf="edit">
+
+    <div class="form">
+     
+       <!-- Reactive form for editing subcategory-->
+        <form [formGroup] ="editSubCategoryForm">
+            <div><h3 class="heading">EDIT SUB CATEGORY</h3><span></span></div>
+
+              <!--Start of Sub Catgeory Name-->
+              <div class="subCategoryName">
+               
+                <input class="form-control" type="text" name="subCategoryName" formControlName="subCategoryName" id="input" placeholder="Enter SubCategory name">
+                
+                <!--Validations for subcategory-->
+                <div *ngIf="submitted && editSubCategoryForm.controls.subCategoryName.errors">
+                    
+                    <div *ngIf="editSubCategoryForm.controls.subCategoryName.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="editSubCategoryForm.controls.subCategoryName.errors.pattern">
+                        <p id="pattern">sub category name should contain only aplhabets</p>
+                      
+                    </div>
+                </div>
+                <div *ngIf="submitted && !editSubCategoryForm.controls.subCategoryName.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!--End of subcategory name-->
+
+            <!-- Start for chosing category-->
+            <div class="category">
+                <select name="category" class="form-control" [(ngModel)]="selectedCategory"  id="input" formControlName="category" hidden>
+                    <option value="" disabled selected>Select subCategory</option>
+                    <option *ngFor="let category_d of categories;"  [value]="category_d?.categoryId">{{category_d.categoryName}}</option>  
+                </select>
+  
+            </div>
+            <!--End of category-->
+         <button  style="margin-top:1rem" class="submit form-control" (click)="editSubCategory()" style="background-color: green;color:white"> Save</button>
+        </form>
+    </div>
+</div>

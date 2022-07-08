@@ -1,0 +1,186 @@
+
+/*wrapping up whole content*/
+.wrapper{
+    width:83vw;
+    box-sizing: border-box;
+    padding:1rem;
+}
+
+/*styling title start*/
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.heading{
+    color: #ff971d;
+    margin-left: 2rem;
+    margin-bottom: 2rem;
+    font-family: Julius Sans One;
+    font-weight:  bolder;
+    text-shadow: red 1px 0 2px; 
+    text-decoration: underline;
+    text-decoration-color:crimson;
+}
+/*styling title ends*/
+
+
+
+/*Styling whole content starts*/
+.content{
+    display:flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: center;
+    
+
+}
+
+/*styling for each item card details*/
+.content .child{
+   width: 237px;
+   height:32rem;
+    border: 1px solid black;
+    margin:1rem;
+    
+   
+}
+    .child:hover{
+
+        /*zoom on hover*/
+    transform : scale(1.03);
+    box-shadow: 2px 2px 2px 1px coral;
+    }
+    /*styling item name*/
+    .itemName{
+        position:relative;
+        color:white;
+        height:4rem;
+        width:235px;
+        background-color: crimson;
+        text-align: center;
+        word-break:normal;
+        border-radius: 0.1rem;
+        padding:1rem;
+    
+    }
+
+    /*styling image in card*/
+    .child img{
+        width:235px;
+        height:240px;
+        border-radius: 0%;
+    }
+
+    /*styling fav icons*/
+    .child .edit, .bin{
+        position: relative;
+        top:-3.5rem;
+        width:3rem;height:3rem;
+        padding:0.45rem;
+        font-size: x-large;
+        background-color: #29150E;
+        color:white;
+        border-radius:50%;
+        margin:0.4rem ;
+        margin-left:1rem;
+    }
+    .child .bin{
+        position: relative;
+        top:-7.3rem;
+        left:4rem;
+    }
+
+    .child .edit:hover, .bin:hover{
+        background-color: white;
+        color:#29150E;
+    }
+
+    /*styling price tag starts*/
+    .tag {
+    display: inline-block;
+    left:8.65rem;
+    top:-3.5rem;
+    width: auto;
+        height: 3.65rem;
+        background-color: rgba(251,212,109,0.95);;
+        border-radius: 2px 4px 4px 3px;	
+        border-left: 1px solid rgba(251,212,109,0.95);;
+        /* This makes room for the triangle */
+        margin-left: 7.7rem;
+        position: relative;
+        color: crimson;
+        font-size: 22px;
+        font-weight: bold;
+        padding: 0 10px 0 10px;
+        z-index: 0;
+    }
+
+    /* Makes the triangle */
+    .tag::before {
+        content: "";
+        position: absolute;
+        display: block;
+        left: -19px;
+        width: 0;
+        height: 0;
+        border-top: 19px solid transparent;
+        border-bottom: 19px solid transparent;
+        border-right: 19px solid rgba(251,212,109,0.95);
+    }
+
+    /* Makes the circle */
+    .tag::after {
+        content: "";
+        background-color: crimson;
+        border-radius: 50%;
+        width: 4px;
+        height: 4px;
+        display: block;
+        position: absolute;
+        left: -9px;
+        top: 17px;
+    }
+
+    /*styling price tag ends*/
+
+
+    .activeStatus{
+        position:relative;
+        top:-10.8rem;
+        width:7rem;
+        height:3rem;
+        border:1px solid black;
+        left:16rem;
+        text-align: center;
+        background-color: #335d2d;
+        color: white;
+        transition: 1s ease all;
+        z-index: 0;
+    }
+/*styling for card ends*/
+
+
+/*styling search bar*/
+.search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#search{
+    padding:0.3rem;
+    text-align: center;
+    border-radius:1rem;
+    border:1.5px solid coral;
+    width:270px;
+    
+  
+}
+#search:focus{
+  outline: none;
+  box-shadow: 2px 2px 1px 1px coral;
+  
+}
+/*end of stylin search bar*/
+
+

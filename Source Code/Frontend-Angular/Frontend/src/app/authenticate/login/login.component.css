@@ -1,0 +1,19 @@
+.glyphicon {
+    font-size: 40px;
+}
+
+.left{
+    float:left;
+    height:80%;
+    width:50%;
+
+  }
+
+  .right{
+    float:right;
+    height:80%;
+    width:50%;
+    
+  }
+
+ 

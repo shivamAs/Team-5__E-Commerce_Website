@@ -1,0 +1,82 @@
+<div class="body" style="transform: scale(0.75);">
+<div class="right">
+            <img src="assets/Images/restaurant.jpg" width="100%" height="1125px" />        
+
+</div> 
+<div class="left" style="background: linear-gradient(to bottom, #0099cc 0%, #000066 100%);height: 1125px;">
+    <form [formGroup]="loginForm" (ngSubmit)="verifyLogin()" class='card' style="margin-top: 18%;width:80rem; margin-left: 15%">
+           
+        <h1  class="text-dark">
+                <img src="\assets\Images\images.jpg" width="30%" style="margin-left: 18% ;margin-top: 2%" />
+        <b>Login</b>
+        </h1>
+        <br />
+        <br />
+        <div class="form-group">
+            <div class="row">
+                <div class="offset-lg-2 col-lg-2 offset-md-2 col-md-2 offset-sm-2 col-sm-2">
+                    <br />
+                    <i class="glyphicon glyphicon-user"></i>
+                </div>
+
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <br />
+                    <input type="email" class="form-control" formControlName="emailId" placeholder="ex:abc@gmail.com" />
+                    <div *ngIf="submitted && loginForm.controls.emailId.errors" class="error">
+                        <div class="text-danger" *ngIf="loginForm.controls.emailId.errors.required">
+                            <font size="5">Email Id is required ..</font>
+                        </div>
+                        <div class="text-danger" *ngIf="loginForm.controls.emailId.errors.email">
+                            <font size="5">Email Id must follow the required pattern!!</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of emailId-->
+        <br>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="offset-lg-2 col-lg-2 offset-md-2 col-md-2 offset-sm-2 col-sm-2">
+                    
+                    <i class="glyphicon glyphicon-lock"></i>
+                </div>
+
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+
+                    <div *ngIf="submitted && loginForm.controls.password.errors" class="error">
+                        <div class="text-danger" *ngIf="loginForm.controls.password.errors.required">
+                            <font size="5">Password is required ..</font>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of password -->
+        <br>
+        <br>
+        <div class="offset-lg-4 col-lg-6 offset-md-4 col-md-6 offset-sm-4 col-sm-6">
+            <button class="btn btn-success" style="border-radius: 30%">
+                <font size="5">Login</font>
+            </button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-danger" type="reset" style="border-radius: 30%">
+                <font size="5">Cancel</font>
+            </button> <br />
+            <br />
+            <font size="4" color="blue" size="5">Forgot Password?&nbsp;
+                    <a routerLink="/authenticate/reset-password">
+                        <font size="5" color="black">Reset Now</font>
+                    </a>
+                </font>
+            <br/>
+            <br/>
+            <font size="4" color="blue" size="5">Not a User?&nbsp;
+                <a routerLink="/authenticate/sign-up">
+                    <font size="5" color="black">Sign Up</font>
+                </a>
+            </font>
+        </div>
+        <br />
+    </form>
+</div>
+</div>

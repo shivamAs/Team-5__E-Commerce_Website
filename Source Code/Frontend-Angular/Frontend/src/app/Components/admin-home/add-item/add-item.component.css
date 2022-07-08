@@ -1,0 +1,100 @@
+/*wrapper for whole component*/
+.wrapper{
+    width:83vw;  
+    box-sizing: border-box;
+    padding:1rem;
+}
+
+/*styling of title*/
+.heading{
+    color: #ff971d;
+    margin-left: 4rem;
+    margin-bottom: 2rem;
+    font-family: Julius Sans One;
+    font-weight:  bolder;
+    text-shadow: red 1px 0 2px; 
+    text-decoration: underline;
+    text-decoration-color:crimson;
+}
+
+/*Starting of form styling*/
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: relative;
+   
+}
+
+
+input:focus,select:focus, button:focus{
+  box-shadow: none;
+  background-color: none;
+}
+ .itemname,.itemDescription, .itemPrice, .form input, .uploadImage, .type, .speciality, .status,  .subCategory, select{
+    width:25rem;
+    margin-top:1rem;
+    
+}
+ 
+.submit{
+    margin-top: 1rem;
+    width: 10rem;
+    margin-left: 5rem;
+}
+
+#exclaim{
+    
+    position: relative;
+    top:-2rem;
+    font-size: large;
+    left:21.5rem;
+    color:red;
+}
+#check{
+    position: relative;
+    top:-2rem;
+    font-size: large;
+    left:21.5rem;
+    color:green;
+    background-color: white;
+
+
+}
+
+#pattern{
+	position: relative;
+	max-width: 20rem;
+    top:5px;
+    left:1rem;
+	color:white;
+	background-color: red;
+	padding: 0.2rem 0.2rem;
+	font-size: 12px;
+    border-radius: 1rem;
+    text-align: center;
+  
+}
+
+#pattern::before {
+	
+	content: '';
+	position: absolute;
+	width: 0;
+	height: 0;
+	bottom: 100%;
+	left: 0.9rem; 
+	border: .4rem solid transparent;
+	border-top: none;	
+	border-bottom-color: red;
+	
+}
+button:hover{
+    opacity: 0.9;
+}
+label{
+    color:darkblue;
+    margin-bottom: -4px;
+}
+
+/*End of form styling*/

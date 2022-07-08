@@ -1,0 +1,37 @@
+<div class="wrapper">
+   
+    <div class="form">
+      <!-- Reactive form validation for adding a new Category-->
+        <form [formGroup] ="addCategoryForm">
+            <div><h3 class="heading">ADD CATEGORY</h3><span></span></div>
+
+            <!-- Displaying message if category is added successfully-->
+            <div *ngIf="added" class="text-success" style="text-align: center;">Added Category Succesfully</div>
+             <!-- Message display for user understanding of not adding category successfully-->
+            <div *ngIf="category_name_already_exists" class="text-danger" style="text-align: center">Sorry!!! Category with this name already exists</div>
+            
+            <!--Start of category name-->
+            <div class="categoryName">
+               <label>Category Name</label>
+                <input class="form-control" type="text" name="categoryName" formControlName="categoryName" id="input" placeholder="Enter your category name">
+                <!-- validating category name-->
+                <div *ngIf="submitted && addCategoryForm.controls.categoryName.errors">
+                    
+                    <div *ngIf="addCategoryForm.controls.categoryName.errors.required">
+                        
+                        <i id="exclaim" class="fa fa-exclamation-circle"></i>
+                    </div>
+                    <div *ngIf="addCategoryForm.controls.categoryName.errors.pattern">
+                        <p id="pattern">category name should contain only aplhabets</p> 
+                    </div>
+                </div>
+                <div *ngIf="submitted && !addCategoryForm.controls.categoryName.errors">
+                    <i id="check" class="fa fa-check-circle check-icon" ></i>
+                </div>
+            </div>
+            <!--End of category name-->
+         <button class="submit form-control" (click)="addCategory()" style="background-color: green;color:white"> Add Category</button>
+         
+        </form>
+    </div>
+</div>

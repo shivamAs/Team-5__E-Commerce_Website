@@ -1,0 +1,64 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<div class="wrapper">
+    <!-- side bar-->
+    <nav class="sidebar" id="sidebar">
+       <div class="title-main"><div class="title"><ul><li>E</li><li>L</li><li>E</li><li>F</li></ul></div> </div>
+        <div class="sidebar-links">
+                <div class="inside-sidebar-links">
+                    <li>
+                        <i class="fa fa-home home" style="color:green"></i> &nbsp;<a (click)="home()">Home</a>
+                    </li>
+                    <li class="content-pages">
+                        <a data-target="#contentPages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Contents</a>
+                            <ul class="collapse" id="contentPages">
+                                
+                                <li><i class="fa fa-shopping-cart" style="color:  #ffef96;"></i>&nbsp;
+                                    <a (click)="getOrders()" >Orders</a>
+                                </li>
+                                <li><i class="fa fa-list-alt category" style="color:  #ffef96;" aria-hidden="true"></i>&nbsp;
+                                    <a (click)="getCategories()">Categories</a>
+                                </li>
+                                <li><i class="fa fa-list-alt subcategory" style="color:  #ffef96;"></i>&nbsp;
+                                    <a (click)="getSubCategories()">Sub Categories</a>
+                                </li>
+                                <li><i class="fa fa-book fa-fw item" style="color:  #ffef96;" aria-hidden="true"></i>&nbsp;
+                                    <a (click)="getItems()">Items</a>
+                                </li>
+                            </ul>
+                    </li>
+                    <li class="pages">
+                        <a data-target="#pages" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Work Place</a>
+                            <ul class="collapse" id="pages">
+                                <li><i style="color:  #ffef96;" class=" add-item fa fa-edit"></i>&nbsp;
+                                    <a  (click)="addItem()">Add Item</a>
+                                </li>
+                                <li><i  style="color:  #ffef96;" class=" add-category fa fa-edit"></i>&nbsp;
+                                    <a (click)="addCategory()" >Add category</a>
+                                </li>
+                                <li><i style="color:  #ffef96;" class="add-subcategory fa fa-edit"></i>&nbsp;
+                                    <a (click)="addSubCategory()">Add subcategory</a>
+                                </li>
+                            </ul>
+                    </li>
+                    <li> <i style="color:  #ffef96;" class="fa fa-roles roles" aria-hidden="true"></i>&nbsp;<a (click)="roles()">Roles & Permissions</a> </li>
+                   
+        
+                    <li><i style="color: red;" class="fa fa-power-off logout"></i>&nbsp; <a (click)="logout()">Logout </a></li>
+                
+                </div>
+            </div>
+          
+       
+       
+    </nav>
+
+    <!-- content -->
+    <div class="content">
+          
+        <router-outlet></router-outlet>
+    </div>
+
+</div>
+
+

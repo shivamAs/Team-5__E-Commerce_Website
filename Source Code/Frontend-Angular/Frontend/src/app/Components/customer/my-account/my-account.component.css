@@ -1,0 +1,126 @@
+.content{
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    font-family: 'Trebuchet MS';
+    color: #29150e;
+}
+
+.data{
+    margin-top: 50px;
+    max-width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data .headRow{
+    border-bottom: 1px solid #29150e;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.data .firstRow{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.tableHeading{
+    background-color: rgb(238, 238, 238);
+    padding: 5px;
+    text-align: center;
+}
+
+
+/* Add address form design */
+.addAddress{    
+    width: 50%;
+    border: 1px solid black;
+    box-shadow: 0 0 3px 0 rgba(45,21,14,0.75);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: 'Trebuchet MS';
+    color: #29150e;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.addAddress .headRow{
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    position: relative;    
+}
+
+.addAddress .headRow .closeBtn{
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #29150e;
+}
+
+.addAddress .headRow .closeBtn:hover{
+    background-color: rgba(45,21,14);
+    color: white;
+}
+
+.addAddress form{
+    width: 90%;
+    margin-left: 5%;
+}
+
+
+@media (max-width:600px){
+    .data{
+        width: 99.5%;
+    }
+
+    #table{
+        font-size: 10px;
+    }
+
+    #table button{
+        padding: 1px;
+        font-size: 10px;
+    }
+    .addAddress{
+        width: 100%;
+    }
+    .add form{
+        width: 100%;
+        font-size: 14px;
+    }
+
+    .firstRow,.headRow{
+        flex-wrap: wrap;
+    }
+
+    .headRow h1{
+        font-size: 18px;
+    }
+    
+    h4{
+        font-size: 16px;
+    }
+
+    .headRow button{
+        padding: 1px;
+        font-size: 10px;
+    }
+}

@@ -1,0 +1,203 @@
+<div class="content">
+    <div class="headRow">
+
+        <!-- To filter the items of a particular category -->
+        <div class="filterOptions">
+            <div>
+                <i class="fa fa-filter"></i>
+                <select (change)="setFilter()" [(ngModel)]="filter" id="select">
+                    <option selected hidden value="{{filter}}" *ngIf="type=='search'">Choose Category</option>
+                    <option *ngFor="let obj of categories" value="{{obj.subCategoryName}}">{{obj.subCategoryName}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <i class="fa fa-filter"></i>
+                <select (change)="setFilter2()" [(ngModel)]="filter2" id="select2">
+                    <option value="" >All</option>
+                    <option value="non-veg">Non-Veg</option>
+                    <option value="veg">Veg</option>
+                    <option value="active">Active Items</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Selected Category Name -->
+        <div class="heading">
+            <h1>{{heading}}</h1>
+            <span *ngIf="heading!=''"></span>
+        </div>
+        <div class="filterOptions" style="justify-content: flex-start;">
+            <i class="fa fa-sort"></i>
+            <select (change)="setSortBy()" [(ngModel)]="sortBy" id="select3">
+                <option value="">None</option>
+                <option value="ascending">Price &#8593;</option>
+                <option value="descending">Price &#8595;</option>
+            </select>
+        </div>
+    </div>
+
+
+    <!-- List of items design -->
+    <div class="items" *ngIf="type && type=='category' && categories">
+        <ng-container *ngFor="let obj of filteredItems">
+
+            <!-- Active Item card design -->
+            <div class="itemCard" *ngIf="obj.active">
+                <div class="image">
+                    <img src="assets/Images/{{obj.picture}}">
+                </div>
+                <div class="priceTag">
+                    Rs. {{obj.itemPrice}}/-
+                </div>
+                <div class="info">
+                    <div class="left">
+                        <span class="text-danger" *ngIf="obj.type && obj.type=='non-veg'"><span
+                                style="font-size: 25px;">&#8226;</span>
+                            Non-Veg</span>
+                        <span class="text-success" *ngIf="obj.type && obj.type=='veg'"><span
+                                style="font-size: 25px;">&#8226;</span>
+                            Veg</span><br>
+                        <h1>{{obj.itemName}}</h1>
+                    </div>
+                </div>
+
+                <!-- Add item to carry box -->
+                <div class="addColumn" *ngIf="carryBox && ((carryBox.itemlist | filterCarryBoxItems:obj.itemId)==0)">
+                    <button class="btn btn-outline-success" (click)="addToCarryBox(obj.itemId)">+ ADD</button>
+                </div>
+
+                <!-- When user is not logged in -->
+                <div class="addColumn" *ngIf="!carryBox">
+                    <button class="btn btn-outline-success" (click)="login()">BUY</button>
+                </div>
+
+                <!-- Update or remove the item in the carry box -->
+                <div class="editColumn" *ngIf="carryBox && ((carryBox.itemlist | filterCarryBoxItems:obj.itemId)!=0)">
+                    <div class="edit" (click)="decreaseQuantity(obj.itemId)">-</div>
+                    <div class="quantity">{{carryBox.itemlist|filterCarryBoxItems:obj.itemId}}</div>
+                    <div class="edit" (click)="increaseQuantity(obj.itemId)">+</div>
+                </div>
+            </div>
+
+
+            <!-- Inactive Item card design -->
+            <div class="itemCard" *ngIf="!obj.active" style="opacity: 0.7; pointer-events: none;">
+                <div class="image">
+                    <img src="assets/Images/{{obj.picture}}">
+                </div>
+                <div class="priceTag">
+                    Rs. {{obj.itemPrice}}/-
+                </div>
+                <div class="info">
+                    <div class="left">
+                        <span class="text-danger" *ngIf="obj.type && obj.type=='non-veg'"><span
+                                style="font-size: 25px;">&#8226;</span>
+                            Non-Veg</span>
+                        <span class="text-success" *ngIf="obj.type && obj.type=='veg'"><span
+                                style="font-size: 25px;">&#8226;</span>
+                            Veg</span><br>
+                        <h1>{{obj.itemName}}</h1>
+                    </div>
+                </div>
+                <div class="addColumn text-danger">
+                    <h6>Currently Not Available!</h6>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Display Message when no items are found with that category -->
+        <div class="text-danger text-center" style="width: 100%;" *ngIf="filteredItems.length==0">
+            <h3>No Items Found!!</h3>
+        </div>
+    </div>
+
+
+    <!-- Search Results Items design -->
+    <div class="items" *ngIf="type && type=='search' && items">
+        <ng-container *ngFor="let obj of items">
+            <!-- Active Card Design -->
+            <div class="itemCard" *ngIf="obj.active">
+                <div class="image">
+                    <img src="assets/Images/{{obj.picture}}">
+                </div>
+                <div class="priceTag">
+                    Rs. {{obj.itemPrice}}/-
+                </div>
+                <div class="info">
+                    <div class="left">
+                        <span class="text-danger" *ngIf="obj.type=='non-veg'"><span
+                                style="font-size: 25px;">&#8226;</span>
+                            Non-Veg</span>
+                        <span class="text-success" *ngIf="obj.type=='veg'"><span style="font-size: 25px;">&#8226;</span>
+                            Veg</span><br>
+                        <h1>{{obj.itemName}}</h1>
+                    </div>
+                </div>
+
+                <!-- Add a new item to carry box -->
+                <div class="addColumn" *ngIf="carryBox && ((carryBox.itemlist | filterCarryBoxItems:obj.itemId)==0)">
+                    <button class="btn btn-outline-success" (click)="addToCarryBox(obj.itemId)">+ ADD</button>
+                </div>
+
+                <!-- When user is not logged in -->
+                <div class="addColumn" *ngIf="!carryBox">
+                    <button class="btn btn-outline-success" (click)="login()">BUY</button>
+                </div>
+
+                <!-- Update or remove an item in the carry box -->
+                <div class="editColumn" *ngIf="carryBox && ((carryBox.itemlist | filterCarryBoxItems:obj.itemId)!=0)">
+                    <div class="edit" (click)="decreaseQuantity(obj.itemId)">-</div>
+                    <div class="quantity">{{carryBox.itemlist|filterCarryBoxItems:obj.itemId}}</div>
+                    <div class="edit" (click)="increaseQuantity(obj.itemId)">+</div>
+                </div>
+            </div>
+
+
+            <!-- Inactive Card Design -->
+            <div class="itemCard" *ngIf="!obj.active" style="opacity: 0.7; pointer-events: none;">
+                <div class="image">
+                    <img src="assets/Images/{{obj.picture}}">
+                </div>
+                <div class="priceTag">
+                    Rs. {{obj.itemPrice}}/-
+                </div>
+                <div class="info">
+                    <div class="left">
+                        <span class="text-danger" *ngIf="obj.type=='non-veg'"><span
+                                style="font-size: 25px;">&#8226;</span>
+                            Non-Veg</span>
+                        <span class="text-success" *ngIf="obj.type=='veg'"><span style="font-size: 25px;">&#8226;</span>
+                            Veg</span><br>
+                        <h1>{{obj.itemName}}</h1>
+                    </div>
+                </div>
+                <div class="addColumn text-danger">
+                    <h6>Currently Not Available!</h6>
+                </div>
+            </div>
+        </ng-container>
+
+        <!-- Display Message when no items are found with the Search Text -->
+        <div class="text-danger text-center" style="width: 100%;" *ngIf="items.length==0">
+            <h3>No Items Found!!</h3>
+        </div>
+    </div>
+
+
+    <!-- Footer row of carry box options like clear, buy now
+        visible only when there are some items in the carry box -->
+    <div class="carryBox bg-success text-light" *ngIf="carryBox && carryBox.itemlist.length>0">
+
+        <!-- Total cost of selected items -->
+        <div class="info">
+            Items in the Carry Box worth <span class="text-success">Rs. {{carryBox.total_cost}}/-</span>
+        </div>
+        <!-- Options -->
+        <div class="btns">
+            <button class="btn btn-outline-light clearBtn" (click)="clearTheCarryBox()">CLEAR</button>&nbsp;
+            <a class="carryBoxBtn" (click)="goToCarryBox()" style="color: white;">Go To Carry Box</a>&nbsp;
+            <button class="btn btn-light buyBtn" (click)="placeOrder()">Buy Now</button>&nbsp;
+        </div>
+    </div>
+</div>

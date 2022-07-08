@@ -1,0 +1,302 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+<!-- Place Order body Design -->
+<div class="content" *ngIf="!orderPlaced && orderSuccess">
+    <div class="data" *ngIf="carryBox">
+
+
+        <!-- Header Row -->
+        <div class="amountRow">
+            <button class="btn btn-secondary" (click)="goToItems()">Cancel</button>
+            <h5 style="color: #29150e;">No. of Items - <b>{{carryBox.itemlist.length}}</b></h5>
+            <button class="btn btn-outline-dark" (click)="goToCarryBox()"><i class="fa fa-pencil"></i> Review</button>
+        </div>
+
+        <!-- Bill Amount -->
+        <div class="amountRow">
+            <h5 class="text-success">Total Amount to be paid - <span class="bg-success text-light">Rs.
+                    {{carryBox.total_cost}}/-</span></h5>
+        </div>
+
+
+        <div class="order">
+            <!-- Choose Address option design-->
+            <div class="head1">Choose an Address</div>
+            <div class="addresses">
+                <div class="addressCard" style="background-color: rgb(238, 238, 238);">
+                    <a (click)="openAddressForm()">+ Add a New Address</a>
+                </div>
+
+
+                <!-- Displaying all the saved addresses in that user account -->
+                <div class="addressCard" id="{{obj.addressId}}" *ngFor="let obj of addresses"
+                    (click)="setAddressId(obj.addressId)">
+                    {{obj.name}},<br>
+                    {{obj.line1}}, {{obj.line2}},<br>{{obj.city}}.
+                    <span>&#10004;</span>
+                </div>
+            </div>
+            <div class="text-center text-danger" *ngIf="!deliverable">
+                <h5>You are ordering from {{currentBranch}} Branch, so please select an address near to it!!</h5>
+            </div>
+
+            <!-- To display the success or failure message -->
+            <div class="text-success text-center" *ngIf="statusMsg" style="font-size: 23px;padding: 10px;">{{statusMsg}}
+            </div>
+
+
+            <!-- Add a new address option design -->
+            <div class="addAddress" *ngIf="addNewAddress">
+                <div class="headRow">
+                    <h4
+                        style="font-family: 'Julius Sans One';font-weight: bolder;text-decoration: underline;cursor: default;">
+                        Add New Address</h4>
+                    <button class="closeBtn" (click)="closeAddressForm()">X</button>
+                </div>
+
+
+                <!-- Address Form -->
+                <form [formGroup]="addAddressForm" name="addAddressForm">
+                    <div class="input">
+                        <div class="text-center text-secondary" style="padding: 5px;font-size: 20px;">Enter the Details
+                        </div>
+
+                        <!-- Name Input -->
+                        <div class="form-group inpBox">
+                            <input type="text" autocomplete="off" class="form-control" id="name" formControlName="name"
+                                name="name" placeholder="Enter the Name"
+                                [ngClass]="{'is-invalid': (addAddressForm.get('name').touched && addAddressForm.get('name').invalid) || (addressFormSubmitted && addAddressForm.get('name').invalid)}" />
+
+                            <!-- Invalid Messages -->
+                            <div *ngIf="addAddressForm.get('name').errors" class="invalid-feedback">
+                                <div *ngIf="addAddressForm.get('name').errors.required">&nbsp;&nbsp;&nbsp;Name is
+                                    required !!</div>
+                                <div
+                                    *ngIf="addAddressForm.get('name').errors.pattern || addAddressForm.get('name').errors.minlength">
+                                    &nbsp;&nbsp;&nbsp;Enter a valid Name !!
+                                </div>
+                                <div *ngIf="addAddressForm.get('name').errors.maxlength">&nbsp;&nbsp;&nbsp;Max 25characters 
+                                    are allowed !!</div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Address Line1 Input -->
+                        <div class="form-group inpBox">
+                            <input type="text" autocomplete="off" class="form-control" id="line1"
+                                formControlName="line1" name="line1" placeholder="Address Line1"
+                                [ngClass]="{'is-invalid': (addAddressForm.get('line1').touched && addAddressForm.get('line1').invalid) || (addressFormSubmitted && addAddressForm.get('line1').invalid)}" />
+
+                            <!-- Invalid Message -->
+                            <div *ngIf="addAddressForm.get('line1').errors" class="invalid-feedback">
+                                <div *ngIf="addAddressForm.get('line1').errors.required">&nbsp;&nbsp;&nbsp;Line1 is
+                                    required !!</div>
+                                <div *ngIf="addAddressForm.get('line1').errors.maxlength">&nbsp;&nbsp;&nbsp;Max
+                                    30characters
+                                    are allowed !!</div>
+                            </div>
+                        </div>
+
+
+                        <!-- Address Line2 Input -->
+                        <div class="form-group inpBox">
+                            <input type="text" autocomplete="off" class="form-control" id="line2"
+                                formControlName="line2" name="line2" placeholder="Address Line2"
+                                [ngClass]="{'is-invalid': (addAddressForm.get('line2').touched && addAddressForm.get('line2').invalid) || (addressFormSubmitted && addAddressForm.get('line2').invalid)}" />
+
+                            <!-- Invalid Message -->
+                            <div *ngIf="addAddressForm.get('line2').errors" class="invalid-feedback">
+                                <div *ngIf="addAddressForm.get('line2').errors.required">&nbsp;&nbsp;&nbsp;Line2 is
+                                    required !!</div>
+                                <div *ngIf="addAddressForm.get('line2').errors.maxlength">&nbsp;&nbsp;&nbsp;Max
+                                    30characters
+                                    are allowed !!</div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Landmark Input -->
+                        <div class="form-group inpBox">
+                            <input type="text" autocomplete="off" class="form-control" id="landmark"
+                                formControlName="landmark" name="landmark" placeholder="landmark"
+                                [ngClass]="{'is-invalid': (addAddressForm.get('landmark').touched && addAddressForm.get('landmark').invalid) || (addressFormSubmitted && addAddressForm.get('landmark').invalid)}" />
+
+                            <!-- Invalid Message -->
+                            <div *ngIf="addAddressForm.get('landmark').errors" class="invalid-feedback">
+                                <div *ngIf="addAddressForm.get('landmark').errors.required">
+                                    &nbsp;&nbsp;&nbsp;Landmark is
+                                    required !!</div>
+                                <div *ngIf="addAddressForm.get('landmark').errors.maxlength">&nbsp;&nbsp;&nbsp;Max
+                                    30characters
+                                    are allowed !!</div>
+
+                            </div>
+                        </div>
+
+
+                        <!-- Choose City Input -->
+                        <div class="form-group inpBox">
+
+                            <!-- List of options -->
+                            <select class="form-control" id="city" formControlName="city" name="city"
+                                [ngClass]="{'is-invalid': (addAddressForm.get('city').touched && addAddressForm.get('city').invalid) || (addressFormSubmitted && addAddressForm.get('city').invalid)}">
+                                <option disabled selected value="">Choose a City</option>
+                                <option *ngFor="let obj of branches" value="{{obj.branchCity}}">{{obj.branchCity}}
+                                </option>
+                            </select>
+
+                            <!-- Invalid Message -->
+                            <div *ngIf="addAddressForm.get('city').errors" class="invalid-feedback">
+                                <div *ngIf="addAddressForm.get('city').errors.required">
+                                    &nbsp;&nbsp;&nbsp;City is
+                                    required !!</div>
+                            </div>
+                            <!-- <div *ngIf="cityNotSelected" style="font-size: small;" class="text-danger">
+                                &nbsp;&nbsp;&nbsp;Please select a city !!
+                            </div> -->
+                        </div>
+
+
+                        <!-- Mobile Number Input -->
+                        <div class="form-group inpBox">
+                            <input type="text" autocomplete="off" class="form-control" id="mobileNumber"
+                                formControlName="mobileNumber" name="mobileNumber" placeholder="Mobile Number"
+                                [ngClass]="{'is-invalid': (addAddressForm.get('mobileNumber').touched && addAddressForm.get('mobileNumber').invalid) || (addressFormSubmitted && addAddressForm.get('mobileNumber').invalid)}" />
+
+                            <!-- Invalid Message -->
+                            <div *ngIf="addAddressForm.get('mobileNumber').errors" class="invalid-feedback">
+                                <div *ngIf="addAddressForm.get('mobileNumber').errors.required">
+                                    &nbsp;&nbsp;&nbsp;Mobile Number is
+                                    required !!</div>
+                                <div *ngIf="addAddressForm.get('mobileNumber').errors.pattern">
+                                    &nbsp;&nbsp;&nbsp;Enter a Valid Mobile Number !!
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Submit Form Button -->
+                        <div class="inputBox text-center">
+                            <input type="submit" class="btn btn-dark" (click)="addAddress()" value="ADD">
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+
+
+            <!-- Choose Payment option design -->
+            <div class="payType">
+                <div class="head">Choose a Payment Options</div>
+
+
+                <!-- UPI Payment option -->
+                <div class="row" style="border-top: 1px solid #29150e;" (click)="setPaymentType('upi')">
+                    <div class="left" id="upi">
+                        <span>&#10004;</span>
+                    </div>
+                    <div class="middle">
+                        UPI Payment
+                    </div>
+                    <div class="images">
+                        <img src="assets/Images/upi.png">&nbsp;
+                        <img src="assets/Images/phonePe.png">&nbsp;
+                        <img src="assets/Images/paytm.png">&nbsp;
+                        <img src="assets/Images/GPay.png">&nbsp;&nbsp;
+                    </div>
+                </div>
+
+
+                <!-- Card Payment option -->
+                <div class="row" (click)="setPaymentType('card')">
+                    <div class="left" id="card">
+                        <span>&#10004;</span>
+                    </div>
+                    <div class="middle">
+                        Credit/Debit Card
+                    </div>
+                    <div class="images">
+                        <img src="assets/Images/visa.png">&nbsp;
+                        <img src="assets/Images/masterCard.png">&nbsp;
+                        <img src="assets/Images/rupay.png">&nbsp;&nbsp;
+                    </div>
+                </div>
+
+
+                <!-- Net Banking option -->
+                <div class="row" (click)="setPaymentType('net')">
+                    <div class="left" id="net">
+                        <span>&#10004;</span>
+                    </div>
+                    <div class="middle">
+                        Internet Banking
+                    </div>
+                    <div class="images">
+                        <img src="assets/Images/sbi.png">&nbsp;
+                        <img src="assets/Images/hdfc.png">&nbsp;
+                        <img src="assets/Images/icici.jpg">&nbsp;
+                        <img src="assets/Images/citi.jpg">&nbsp;&nbsp;
+                    </div>
+                </div>
+
+
+                <!-- Cash on delivery option -->
+                <div class="row" (click)="setPaymentType('cod')">
+                    <div class="left" id="cod">
+                        <span>&#10004;</span>
+                    </div>
+                    <div class="middle">
+                        Pay on delivery
+                    </div>
+                    <div class="images">
+                        <img src="assets/Images/cod.png">&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Place Order option,
+                 It is disabled when address and payment option is not selected -->
+            <div class="text-center" style="padding: 25px;width: 100%;">
+                <button class="btn btn-success"
+                    [disabled]="selectedAddressId==0 || selectedPaymentType=='' || !deliverable"
+                    title="Please select address & payment type" (click)="placeOrder()">PROCEED</button><br>
+                <p *ngIf="selectedAddressId==0 || selectedPaymentType=='' || !deliverable" class="text-danger">* Please
+                    select address & payment type</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Loading option when place order process is in progress at the backend -->
+<div class="content" *ngIf="!orderPlaced && !orderSuccess" style="cursor: default;align-items: center;">
+    <img src="assets/Images/loading.gif" style="width: 25%;height: auto;">
+</div>
+
+
+<!-- Success Page design when an order is successfully placed -->
+<div class="content" *ngIf="orderPlaced && orderSuccess" style="align-items: center; cursor: default;">
+    <div class="text-center">
+        <img src="assets/Images/successSymbol.gif" style="width: 20%;height: auto;padding: 10px;">
+        <h3 class="text-success">Your Order is Successfully Placed!!</h3>
+        <h6 class="text-dark">You will be updated about your Delivery Soon..</h6>
+    </div>
+</div>
+
+
+<!-- Error Page design when an order is failed to be placed -->
+<div class="content" *ngIf="orderPlaced && !orderSuccess" style="align-items: center; cursor: default;">
+    <div class="text-center">
+        <img src="assets/Images/errorSymbol.gif" style="width: 20%;height: auto;padding: 10px;">
+        <h3 class="text-danger">Your Order could not be placed!!</h3>
+        <!-- Error Message -->
+        <h6 class="text-dark">{{statusMsg}}</h6><br><br>
+        <button class="btn btn-outline-dark" (click)="resetAgain()"
+            *ngIf="statusMsg=='Sorry, we could not deliver to this location!!'">Change Location</button>
+        <button class="btn btn-outline-dark" (click)="goToCarryBox()"
+            *ngIf="statusMsg=='Sorry, Some Items in your Carry Box are currently Inactive!!'">Remove Them</button>
+    </div>
+</div>

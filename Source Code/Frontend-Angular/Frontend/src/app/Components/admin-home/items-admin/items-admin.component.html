@@ -1,0 +1,42 @@
+<!--wrapping whole component-->
+<div class="wrapper">
+    <div class="title"><h3 class="heading">ITEMS</h3><span></span></div>
+    <!--start of styling search bar-->
+    <div class="search"><input type="text"  id="search" placeholder="enter your search text" [(ngModel)]="searchtext">
+        <div><i style="color: coral;font-size: larger;position: relative;left:-2rem;" class="fa fa-search" ></i></div>
+        {{searchText}}
+    </div>
+    <!--End of styling search bar-->
+    <br>
+  
+    <!-- Start of Styling item card -->
+    <div class="content">
+            <div  *ngFor="let item of items | searchItems:searchtext">
+                <div class="child">
+
+                    <!--Item name-->
+                    <div class="itemName" >{{item.itemName}}</div>
+                    <!--Item image-->
+                    <div class="circle"><img  src="assets/Images/{{item.picture}}"></div>
+                    <!-- Item Price-->
+                    <div><span class="tag">{{item.itemPrice}}/-</span></div>
+                    <!--edit-->
+                    <div (click)="edit(item.itemId)"><i  class="fa fa-pencil edit"></i></div>
+                    <!-- delete-->
+                    <div (click)="delete(item.itemId)"><i  class="fa fa-trash bin" ></i></div>
+                    <div>
+                        <div>
+                        <!--if item is active-->
+                        <input (click)="updateActiveStatus(item.itemId)" *ngIf="item.active" class="activeStatus"
+                        id="{{item.itemId}}-active"  #active value="active">
+                        </div>
+                        <!--if item is not-active-->
+                        <input (click)="updateActiveStatus(item.itemId)" *ngIf="!item.active" class="activeStatus"
+                        style="background-color: #cd0a0a;" 
+                        id="{{item.itemId}}-active" #active value="not-active">
+                    </div>
+                </div>  
+        </div>
+        <!--End of Styling item card -->
+    </div>
+</div> 

@@ -1,0 +1,115 @@
+/* Overall Body design */
+.content{
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
+}
+
+
+/* List of orders design */
+.data
+{
+    padding-top: 50px;
+    transform: scale(0.9);
+}
+
+.body{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+th{
+    font-size: 23px;
+    font-weight: bolder;
+    font-family: 'Julius Sans One';
+    text-shadow: 1px 0 1px rgba(45,21,14,0.75);
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+td{
+    vertical-align: middle;
+}
+
+tr:hover{
+    background-image: linear-gradient(to right, lightgrey, whitesmoke);
+}
+
+tr:nth-child(1):hover{
+    cursor: default;
+}
+
+.name{
+    font-size: 23px;
+    font-family: ubuntu;
+    color: #29150e;
+}
+
+.info{
+    font-size: 20px;
+    font-family: ubuntu;
+    color: #29150e;
+}
+
+#tag{
+    display: none;
+}
+#detailsBtn{
+    display: block;
+}
+
+.homeBtn{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+
+/* Responsive design for Mobiles */
+@media (max-width:600px){
+
+    #tag{
+        display: block;
+    }
+    #detailsBtn{
+        display: none;
+    }
+
+    .header{
+        height: 10vh;
+    }
+    
+    .data
+    {
+        transform: scale(0.95);
+    }
+    
+    .body{
+        height: 90vh;
+        width: 99.5%;
+    }
+    
+    th{
+        font-size: 12px;
+    }
+    
+    img{
+        width: 50px;
+        height: auto;
+    }
+    
+    .name{
+        font-size: 12px;
+    }
+    
+    .info{
+        font-size: 10px;
+    }
+    
+}

@@ -1,0 +1,42 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { AdminHomeComponent } from './components/admin-home/admin-home.component';
+import { DashboardComponent } from './components/admin-home/dashboard/dashboard.component';
+import { OrdersComponent } from './components/admin-home/orders/orders.component';
+import { AddItemComponent } from './components/admin-home/add-item/add-item.component';
+import { AddCategoryComponent } from './components/admin-home/add-category/add-category.component';
+import { AddSubcategoryComponent } from './components/admin-home/add-subcategory/add-subcategory.component';
+import { ItemsComponent } from './components/admin-home/items/items.component';
+import { CategoriesComponent } from './components/admin-home/categories/categories.component';
+import { SubcategoriesComponent } from './components/admin-home/subcategories/subcategories.component';
+import { RolesPermissionsComponent } from './components/admin-home/roles-permissions/roles-permissions.component';
+
+
+
+
+const routes: Routes = [
+{path:'',component:AdminHomeComponent},
+{path:'admin',component:AdminHomeComponent, 
+          children:[{path:'dashboard',component:DashboardComponent},
+                    {path:'orders',component:OrdersComponent},
+                    {path:'addItem',component:AddItemComponent},
+                    {path:'addCategory', component:AddCategoryComponent},
+                    {path:'addSubCategory',component:AddSubcategoryComponent},
+                    {path:'orders', component:OrdersComponent},
+                    {path:'items',component:ItemsComponent},
+                    {path:'categories',component:CategoriesComponent},
+                    {path:'subCategories', component:SubcategoriesComponent},
+                    {path:'addItem/:itemId', component:AddItemComponent},
+                    {path:'r&p',component:RolesPermissionsComponent}
+        
+        
+        ]}
+
+
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }

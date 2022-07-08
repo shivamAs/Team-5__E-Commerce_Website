@@ -1,0 +1,27 @@
+
+
+<div class="body">
+    <div class="data">
+        <p id="tag">*click on an order to view the details of that order</p>
+        <table class="table table-hover table-responsive" style="text-align: center;">
+            <tr style="background-image: linear-gradient(to right, lightgrey, whitesmoke)">
+                <th>Order Date</th>
+                <th>Items(Quantity)</th>
+                <th>Cost</th>
+                <th></th>
+            </tr>
+            <tr *ngFor="let obj of orders" (click)="trackOrder(obj.orderId)">
+                <td class="info">{{obj.orderDate}}</td>
+                <td class="name">{{obj.item.itemName}} ({{obj.quantity}})</td>
+                <td class="info">{{obj.item.itemPrice}}/-</td>
+                <td id="detailsBtn"><button class="btn btn-outline-dark" (click)="trackOrder(obj.orderId)">Details</button></td>
+            </tr>
+            <!-- </div> -->
+            <tr *ngIf="orders.length==0">
+                <td colspan="4" class="text-danger text-center">
+                    <h5>No Orders from your account !!</h5>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

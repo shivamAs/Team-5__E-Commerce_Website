@@ -1,0 +1,198 @@
+<div class="content">
+    <div class="data">
+
+        <!-- Head Row with Name & Options -->
+        <div class="headRow">
+            <div>
+                <button class="btn btn-outline-secondary" (click)="goToHome()">Back to Home</button>
+            </div>
+            <div>
+                <h1>{{user.customerName}}</h1>
+            </div>
+            <div>
+                <button class="btn btn-dark" (click)="goToMyOrders()">My Orders</button>
+            </div>
+        </div>
+
+        <!-- User Details -->
+        <div class="firstRow">
+            <h6>Email Id : <u>{{user.emailId}}</u></h6>
+            <h6>Mobile Number : <u>{{user.mobileNumber}}</u></h6>
+        </div>
+
+        <!-- Table of Saved Addresses -->
+        <div class="text-center text-success" *ngIf="statusMsg!=''">{{statusMsg}}</div>
+        <div class="addresses">
+            <div class="tableHeading">
+                <h4>Saved Addresses</h4>
+            </div>
+            <table class="table table-hover table-responsive" id="table">
+                <tr>
+                    <th>Name on the Address</th>
+                    <th>Address</th>
+                    <th>Landmark</th>
+                    <th>City</th>
+                    <th>Mobile Number</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let obj of user.address">
+                    <td>{{obj.name}}</td>
+                    <td>{{obj.line1}},<br>{{obj.line2}}</td>
+                    <td>{{obj.landmark}}</td>
+                    <td>{{obj.city}}</td>
+                    <td>{{obj.mobileNumber}}</td>
+                    <td>
+                        <button class="btn btn-outline-danger" (click)="editAddress(obj)">Edit</button>&nbsp;
+                        <button class="btn btn-outline-danger" (click)="deleteAddress(obj.addressId)">Delete</button>
+                    </td>
+                </tr>
+                <tr *ngIf="user.address.length==0">
+                    <td colspan="6" class="text-danger text-center">No Saved Addresses</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="text-center">
+                        <button class="btn btn-outline-dark" (click)="addAddress()">+ Add New Address</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+
+        <!-- Address Form to add or update addresses -->
+        <div class="addAddress" *ngIf="showAddressForm">
+            <div class="headRow">
+                <h4
+                    style="font-family: 'Julius Sans One';font-weight: bolder;text-decoration: underline;cursor: default;">
+                    Address Form</h4>
+                <button class="closeBtn" (click)="closeAddressForm()">X</button>
+            </div>
+
+
+            <!-- Address Form -->
+            <form [formGroup]="addressForm" name="addressForm">
+                <div class="input">
+                    <div class="text-center text-secondary" style="padding: 5px;font-size: 20px;">Enter the Details
+                    </div>
+                    <input type="text" autocomplete="off" class="form-control" id="addressId"
+                        formControlName="addressId" style="display: none;">
+
+                    <!-- Name Input -->
+                    <div class="form-group inpBox">
+                        <input type="text" autocomplete="off" class="form-control" id="name" formControlName="name"
+                            name="name" placeholder="Enter the Name"
+                            [ngClass]="{'is-invalid': (addressForm.get('name').touched && addressForm.get('name').invalid) || (addressFormSubmitted && addressForm.get('name').invalid)}" />
+
+                        <!-- Invalid Messages -->
+                        <div *ngIf="addressForm.get('name').errors" class="invalid-feedback">
+                            <div *ngIf="addressForm.get('name').errors.required">&nbsp;&nbsp;&nbsp;Name is
+                                required !!</div>
+                            <div
+                                *ngIf="addressForm.get('name').errors.pattern || addressForm.get('name').errors.minlength">
+                                &nbsp;&nbsp;&nbsp;Enter a valid Name !!
+                            </div>
+                            <div *ngIf="addressForm.get('name').errors.maxlength">&nbsp;&nbsp;&nbsp;Max 25characters
+                                are allowed !!</div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Address Line1 Input -->
+                    <div class="form-group inpBox">
+                        <input type="text" autocomplete="off" class="form-control" id="line1" formControlName="line1"
+                            name="line1" placeholder="Address Line1"
+                            [ngClass]="{'is-invalid': (addressForm.get('line1').touched && addressForm.get('line1').invalid) || (addressFormSubmitted && addressForm.get('line1').invalid)}" />
+
+                        <!-- Invalid Message -->
+                        <div *ngIf="addressForm.get('line1').errors" class="invalid-feedback">
+                            <div *ngIf="addressForm.get('line1').errors.required">&nbsp;&nbsp;&nbsp;Line1 is
+                                required !!</div>
+                            <div *ngIf="addressForm.get('line1').errors.maxlength">&nbsp;&nbsp;&nbsp;Max 30characters
+                                are allowed !!</div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Address Line2 Input -->
+                    <div class="form-group inpBox">
+                        <input type="text" autocomplete="off" class="form-control" id="line2" formControlName="line2"
+                            name="line2" placeholder="Address Line2"
+                            [ngClass]="{'is-invalid': (addressForm.get('line2').touched && addressForm.get('line2').invalid) || (addressFormSubmitted && addressForm.get('line2').invalid)}" />
+
+                        <!-- Invalid Message -->
+                        <div *ngIf="addressForm.get('line2').errors" class="invalid-feedback">
+                            <div *ngIf="addressForm.get('line2').errors.required">&nbsp;&nbsp;&nbsp;Line2 is
+                                required !!</div>
+                            <div *ngIf="addressForm.get('line2').errors.maxlength">&nbsp;&nbsp;&nbsp;Max 30characters
+                                are allowed !!</div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Landmark Input -->
+                    <div class="form-group inpBox">
+                        <input type="text" autocomplete="off" class="form-control" id="landmark"
+                            formControlName="landmark" name="landmark" placeholder="landmark"
+                            [ngClass]="{'is-invalid': (addressForm.get('landmark').touched && addressForm.get('landmark').invalid) || (addressFormSubmitted && addressForm.get('landmark').invalid)}" />
+
+                        <!-- Invalid Message -->
+                        <div *ngIf="addressForm.get('landmark').errors" class="invalid-feedback">
+                            <div *ngIf="addressForm.get('landmark').errors.required">
+                                &nbsp;&nbsp;&nbsp;Landmark is
+                                required !!</div>
+                            <div *ngIf="addressForm.get('landmark').errors.maxlength">&nbsp;&nbsp;&nbsp;Max
+                                30characters are allowed !!</div>
+
+                        </div>
+                    </div>
+
+
+                    <!-- Choose City Input -->
+                    <div class="form-group inpBox">
+
+                        <!-- List of options -->
+                        <select class="form-control" id="city" formControlName="city" name="city"
+                            [ngClass]="{'is-invalid': (addressForm.get('city').touched && addressForm.get('city').invalid) || (addressFormSubmitted && addressForm.get('city').invalid)}">
+                            <option disabled selected value="">Choose a City</option>
+                            <option *ngFor="let obj of branches" value="{{obj.branchCity}}">{{obj.branchCity}}</option>
+                        </select>
+
+                        <!-- Invalid Message -->
+                        <div *ngIf="addressForm.get('city').errors" class="invalid-feedback">
+                            <div *ngIf="addressForm.get('city').errors.required">
+                                &nbsp;&nbsp;&nbsp;City is
+                                required !!</div>
+                        </div>
+                    </div>
+
+
+                    <!-- Mobile Number Input -->
+                    <div class="form-group inpBox">
+                        <input type="text" autocomplete="off" class="form-control" id="mobileNumber"
+                            formControlName="mobileNumber" name="mobileNumber" placeholder="Mobile Number"
+                            [ngClass]="{'is-invalid': (addressForm.get('mobileNumber').touched && addressForm.get('mobileNumber').invalid) || (addressFormSubmitted && addressForm.get('mobileNumber').invalid)}" />
+
+                        <!-- Invalid Message -->
+                        <div *ngIf="addressForm.get('mobileNumber').errors" class="invalid-feedback">
+                            <div *ngIf="addressForm.get('mobileNumber').errors.required">
+                                &nbsp;&nbsp;&nbsp;Mobile Number is
+                                required !!</div>
+                            <div *ngIf="addressForm.get('mobileNumber').errors.pattern">
+                                &nbsp;&nbsp;&nbsp;Enter a Valid Mobile Number !!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Form Button -->
+                    <div class="inputBox text-center">
+                        <input type="submit" class="btn btn-dark" (click)="saveAddress()" value="SUBMIT">
+                    </div>
+                    <br>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

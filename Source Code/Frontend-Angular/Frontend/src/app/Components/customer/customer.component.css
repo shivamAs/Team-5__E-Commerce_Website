@@ -1,0 +1,843 @@
+*{
+    padding: 0;
+    margin:0;
+}
+
+
+.header{
+    height: 20vh;
+    width: 100%;
+    background-color: #29150e;
+    color: white;
+    z-index: 10;
+    box-shadow: 0 0 7px 0 #29150e;
+    display: flex;
+    align-items: center;
+    transition: 1s ease all;
+}
+
+
+/* Header Right side designs for category options, searchbox etc.. */
+.header .options{
+    opacity: 0.9;
+    flex: 75%;
+    height: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.header .options .top{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.header .options .top .searchBox{
+    flex: 85%;
+    text-align: center;
+    position: relative;
+}
+
+.header .options .top .searchBox .inputBox{
+    width: 70%;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid white;
+    background-color: white;
+    opacity: 0.95;
+    font-family: 'ubuntu';
+    padding: 3px;
+    outline: none;
+}
+
+.header .options .top .searchBox .inputBox::placeholder{
+    color: #29150e;
+}
+
+.header .options .top .searchBox i{
+    position: absolute;
+    right: 15%;
+    padding: 5px;
+    font-size: 22px;
+    border-radius: 0 5px 5px 0;
+    color: #29150e;
+    background-color: white;
+    opacity: 0.9;
+    border-left: 1px solid #29150e;
+    cursor: pointer;
+}
+
+.header .options .top .searchBox:hover .inputBox{
+    opacity: 1;
+}
+
+.header .options .top .searchBox:hover i{
+    opacity: 1;
+}
+
+.header .options .top .searchBox .inputBox:focus{
+    opacity: 1;
+    box-shadow: 0 0 5px 0 rgba(255 , 255, 255, 1);
+    color: #29150e;
+}
+
+.header .options .top .user{
+    flex: 15%;
+    text-align: center;
+    font-size: 25px;
+}
+.header .options .top .user i{
+    border: none;
+    box-shadow: none;
+    cursor: pointer;
+    text-shadow: 0 0 0;
+    opacity: 0.85;
+}
+
+.header .options .top .user i:hover{
+    opacity: 1;
+    text-shadow: 0 0 4px rgba(255 , 255, 255, 1);
+}
+
+.header .options .bottom{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;    
+}
+
+.header .options .bottom .button{
+    cursor: pointer;
+    position: relative;
+    opacity: 0.85;
+}
+
+.header .options .bottom .button:hover{
+    cursor: pointer;
+    position: relative;
+    opacity: 1;
+}
+
+.header .options .bottom .button span{
+    position: absolute;
+    bottom: -2px;
+    height: 2px;
+    width: 0px;
+    left: 0;
+    background-color: white;
+    transition: 0.65s ease-out all;
+}
+
+.header .options .bottom .button:hover span{
+    width: 100%;
+}
+
+.header .options .bottom ul{
+    list-style: none;
+    float: left;
+    display: flex;
+}
+
+.header .options .bottom ul li{
+    position: relative;
+}
+.header .options .bottom ul li ul{
+    list-style: none;
+    display: none;
+}
+
+
+.header .options .bottom ul li:hover ul{
+    display: block;
+    position: absolute;
+    bottom: -600%;
+    left: 0;
+    z-index: 25;
+    background-color: #29150e;
+}
+
+.header .options .bottom ul li ul:hover{
+    display: block;
+    position: absolute;
+    bottom: -600%;
+    left: 0;
+    z-index: 25;
+    background-color: #29150e;
+}
+
+.header .options .bottom ul li ul li{
+    padding: 10px;
+}
+
+.header .options .bottom select{
+    background-color: #29150e;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 18px;
+    max-width: 75px;
+
+}
+.header .options .bottom select:focus{
+    outline: 1px solid white;
+}
+
+
+.header .options .bottom select option{
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+#header-bottom2 .button span{
+    width: 50%;
+    left: 25%;
+}
+
+#header-bottom2{
+    display: none;
+}
+ 
+#header-bottom1{
+    display: flex;
+}
+
+
+
+
+
+/* User Menu design */
+.menu-button{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 50;
+    height: 10vh;
+    width: 10vh;
+    color: #29150e;
+    font-size: 30px;
+    cursor: pointer;
+    background-color: white;
+    border-radius: 0 0 0 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* user Menu options design */
+#menuExtension{
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 5vh;
+    width: 5vh;
+    z-index: 40;
+    overflow: hidden;
+    color: #29150e;
+    border-radius: 0 0 0 100%;
+    box-shadow: -3px 3px 10px 0 rgba(45 , 21, 14, 0.5);
+    transition: 1s ease all;
+}
+
+.menu-extension .bg{
+    width: 100%;
+    height: 100%;
+    z-index: 40;
+    background-color: #29150e;
+    color: white;
+    font-size: 35px;
+    position: relative;
+    border-radius: 0 0 0 100%;
+}
+
+.menu-extension .bg .myOrdersBtn{
+    z-index: 45;
+    position: absolute;
+    top: 0%;
+    left: 20%;
+    opacity: 0.7;
+}   
+
+.menu-extension .bg .carryBoxBtn{
+    z-index: 45;
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    opacity: 0.7;
+} 
+
+.menu-extension .bg .logoutBtn{
+    z-index: 45;
+    position: absolute;
+    bottom: 10%;
+    right: 5%;
+    opacity: 0.7;
+}
+
+.menu-extension .bg .myOrdersBtn:hover,
+.menu-extension .bg .carryBoxBtn:hover,
+.menu-extension .bg .logoutBtn:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+.menu-extension .bg .myOrdersBtn:hover i,
+.menu-extension .bg .carryBoxBtn:hover i,
+.menu-extension .bg .logoutBtn:hover i{
+    text-shadow: 0 0 10px rgba(255 , 255, 255, 0.5);    
+}
+
+@keyframes rotateIn{
+    0%{
+        opacity: 0;
+        transform: rotateZ(270deg);
+    }
+    100%{
+        opacity: 1;
+        transform: rotateZ(0deg);
+    }
+}
+
+@keyframes rotateOut{
+    0%{
+        opacity: 0;
+        transform: rotateZ(-270deg);
+    }
+    100%{
+        opacity: 1;
+        transform: rotateZ(0deg);
+    }
+}
+
+
+
+
+
+
+/* responsive design for Ipad */
+@media (max-width:800px){
+    #header-bottom1{
+        display: none;
+    }
+     
+    #header-bottom2{
+        display: flex;
+    }   
+
+    #title{
+        font-size: 20px;
+    }
+    #caption{
+        font-size: 16px;
+    }
+    .menu-button{
+        font-size: 40px;
+    }
+
+    .menu-extension .bg{
+        font-size: 45px;
+    }
+}
+
+
+
+
+
+
+/* Responsive Design for Mobile */
+@media (max-width:600px){
+    .menu-button{
+        font-size: 25px;
+    }
+
+    .menu-extension .bg{
+        font-size: 30px;
+    }
+}
+
+
+
+
+
+/* Logo Design and animations */
+
+.logo{
+    width: 100%;
+    height: 20vh;
+    border: 1px solid transparent;
+    position: relative;
+    cursor: pointer;
+}
+
+.logo .top,.logo .bottom{
+    display: flex;
+}
+
+.logo .top{
+    height: 15vh;
+}
+
+.logo .bottom{
+    height: 5vh;
+}
+
+.logo .top{
+    width: 62.5%;
+    font-size: 50px;
+    text-align: center;
+    position: relative;
+}
+
+.logo .bottom{
+    width: 62.5%;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    font-family: 'Julius Sans One';
+    margin-top: -10px;
+    margin-left: 95px;
+}
+
+.e1,.l,.e2,.t1,.t2,.t3{
+    width: 33.33%;
+}
+
+.e1{
+    animation: e1Animation 3s ease 0s 1 normal forwards;
+}
+
+.e2{
+    animation: e2Animation 3s ease 3s 1 normal forwards;
+}
+
+.l{
+    animation: lAnimation 3s ease 6s 1 normal forwards;
+}
+
+.e1,.l,.e2{
+    position: absolute;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.t1,.t2,.t3{
+    position: absolute;
+    bottom: 0;
+    left: 33.33%;
+    opacity: 0;
+}
+
+.e1::after{
+    content: '\1F60B';
+}
+.l::After{
+    content: '\1F60D';
+}
+.e2::after{
+    content: '\1F607';
+}
+
+
+.t1{
+    animation: blink 2s ease 0s 1 normal backwards;
+}
+
+.t2{
+    animation: blink 2s ease 6s 1 normal backwards;
+}
+
+.t3{
+    animation: blink 2s ease 3s 1 normal backwards;
+    
+    
+}
+
+@keyframes blink{
+    0%{
+        opacity: 0;
+        transform: scale(0.75);
+        margin-bottom: 20px;
+    }
+
+    100%{
+        opacity: 1;
+        transform: scale(1.5);
+        margin-bottom: 20px;
+    }
+}
+
+@keyframes e1Animation{
+
+    0%{
+        left: 33.33%;
+        opacity: 0;
+        transform: scale(3);
+    }
+
+    50%{
+        left: 33.33%;
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    70%{
+        left: 33.33%;
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    100%{
+        left: 0;
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+}
+
+@keyframes e2Animation{
+
+    0%{
+        right: 33.33%;
+        opacity: 0;
+        transform: scale(3);
+    }
+
+    50%{
+        right: 33.33%;
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    70%{
+        right: 33.33%;
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    100%{
+        right: 0;
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+}
+
+@keyframes lAnimation{
+
+    0%{
+        right: 33.33%;
+        opacity: 0;
+        transform: scale(3);
+    }
+
+    50%{
+        right: 33.33%;
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    70%{
+        right: 33.33%;
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+
+    100%{
+        opacity: 0.9;
+        right: 33.33%;
+        transform: scale(1);
+    }
+
+}
+
+.logo h1{
+    font-size: 50px;
+    font-family: 'Trebuchet MS';
+    position: absolute;
+    letter-spacing: 2px;
+    color: rgb(255, 255, 255);
+    opacity: 0;
+    animation: zoomIn 2s ease;
+    animation-delay: 10s;
+    cursor: pointer;
+    animation-fill-mode: forwards;
+}
+
+.logo h1 span{
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    background-image: linear-gradient(to right, white, transparent);
+    left: 2%;
+    bottom: 1px;
+    animation: extend 0.75s ease-in;
+    animation-delay: 11s;
+    animation-fill-mode: forwards;
+}
+
+.logo .top{
+    animation: shrinkToLogo 1.5s ease;
+    animation-delay: 9s;
+    animation-fill-mode: forwards;
+    margin-top: -2px;
+    margin-left: 95px;
+}
+
+
+@keyframes shrinkToLogo{
+    0%{
+        transform: scale(1);
+    }
+   
+    100%{
+        transform: scale(0.36);
+    }
+
+}
+
+@keyframes zoomIn{
+    0%{
+        opacity: 0;
+        text-shadow: 0 0 0;
+        left: 15%;
+        top: 7%;
+    }
+
+
+    100%{
+        opacity: 0.85;
+        text-shadow: 1px 0 1px rgba(255 , 255, 255, 0.6);
+        left: 15%;
+        top: 7%;
+    }
+}
+
+@keyframes extend{
+    0%{
+        width: 0%;
+    }
+
+    100%{
+        width: 100%;
+    }
+}
+
+.logo .top2{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: scale(1);
+    animation: scaling 5s ease 12s infinite alternate-reverse backwards;
+}
+
+@keyframes scaling{
+
+    0%{
+        transform: scale(1);
+    }
+
+    90%{
+        transform: scale(1);
+    }
+
+    100%{
+        transform: scale(1.2);
+    }
+}
+
+
+.logo h1{
+    font-style: normal;
+}
+
+.logo h1 p{
+    display: inline-block;
+    position: relative;
+    transform: translateY(0) rotateZ(0deg);
+    animation: bouncing 5s ease 0s infinite alternate-reverse backwards;
+}
+.logo h1 p:nth-child(2){animation-delay: 0s;}
+.logo h1 p:nth-child(3){animation-delay: 0.2s;}
+.logo h1 p:nth-child(4){animation-delay: 0.6s;}
+.logo h1 p:nth-child(5){animation-delay: 0.8s;}
+
+@keyframes bouncing{
+    0%{
+        transform: translateY(0);
+    }
+
+    90%{
+        transform: translateY(0px);
+    }
+
+    100%{
+        transform: translateY(-10px) rotateZ(-10deg);
+    }
+}
+
+
+
+
+
+/* Logo responsive design for ipad,tab */
+@media (max-width:800px){
+
+    .logo{
+        height: 15vh;
+    }
+
+    .logo .top{
+        height: 10vh;
+    }
+
+    
+    .logo h1{
+        font-size: 40px;
+    }
+
+    .logo h1 span{
+        height: 2px;
+    }
+
+    .logo .top{
+        width: 85%;
+        font-size: 40px;
+        margin-left: 68px;
+        margin-top: 22px;
+    }
+
+    .logo .bottom{
+        font-size: 10px;
+    }
+}
+
+
+/* Logo responsive design for mobile */
+@media (max-width:600px){
+
+    .logo{
+        height: 10vh;
+    }
+    
+    .logo .top{
+        height: 7.5vh;
+    }
+    
+    .logo .bottom{
+        height: 2.5vh;
+    }
+    
+    .logo .top{
+        width: 105%;
+        font-size: 20px;
+    }
+    
+    .logo .bottom{
+        width: 105%;
+        font-size: 6px;
+        margin-top: 0px;
+        margin-left: 15px;
+    
+    }
+    
+    
+    .logo h1{
+        font-size: 20px;
+        opacity: 0;
+    }
+  
+    .logo h1 span{
+        bottom: 0;
+        height: 2px;
+    }
+    
+    .logo .top{
+        margin-top: 8px;
+        margin-left: 15px;
+    }
+
+    
+    @keyframes zoomIn{
+        0%{
+            opacity: 0;
+            text-shadow: 0 0 0;
+            left: 0%;
+            top: 25%;
+        }
+    
+    
+        100%{
+            opacity: 0.85;
+            text-shadow: 1px 0 1px rgba(255 , 255, 255, 0.6);
+            left: 0%;
+            top: 25%;
+        }
+    }
+    
+}
+
+/* Choose Location design */
+.popup{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background-color: whitesmoke;
+}
+
+.popup .selectLocation{
+    width: 25%;
+    height: 30%;
+    background-color: white;
+    border: 2px solid #29150e;
+    box-shadow: 0 0 2px 0 #29150e;
+    font-family: 'Trebuchet MS';
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    color: #29150e;
+}
+.popup .selectLocation select{
+    font-size: 18px;
+}
+
+.branch{
+    position: absolute;
+    bottom: 17px;
+    left: 25%;
+}
+
+/* Responsive Design for Ipad, Tab */
+@media (max-width:800px){
+    .popup .selectLocation{
+        width: 75%;
+    }
+
+}
+
+
+/* Responsive Design for Mobiles*/
+@media (max-width:600px){
+
+    .popup .selectLocation{
+        width: 90%;
+    }
+
+    .branch{
+        bottom: 0px;
+        left: 5px;
+    }
+
+    .branch button{
+        font-size: 13px;
+        padding: 1px;
+    }
+}

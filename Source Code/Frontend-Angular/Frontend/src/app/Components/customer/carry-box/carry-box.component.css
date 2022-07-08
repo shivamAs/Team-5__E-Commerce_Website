@@ -1,0 +1,149 @@
+/* Overall body design */
+.content{
+    width: 100%;
+    min-height: 90vh;
+    background-color: white;
+    position: relative;
+}
+
+/* List of Items in the carrybox */
+.data
+{
+    padding-top: 50px;
+    transform: scale(0.9);
+}
+
+.body{
+    width: 100%;
+    height: 85vh;
+    display: flex;
+    justify-content: center;
+}
+
+th{
+    font-size: 25px;
+    font-weight: bolder;
+    font-family: 'Julius Sans One';
+    text-shadow: 1px 0 1px rgba(45,21,14,0.75);
+}
+
+img{
+    width: 100px;
+    height: auto;
+}
+
+td{
+    vertical-align: middle;
+}
+
+.name{
+    font-size: 25px;
+    font-family: ubuntu;
+    color: #29150e;
+}
+
+.price{
+    font-size: 20px;
+    font-family: ubuntu;
+    color: #29150e;
+}
+
+
+/* Design of the options to update the quantity of an item
+   or remove an item from the carrybox */
+.editColumn{
+    width: 200px;
+    font-size: 18px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.editColumn .edit{
+    font-size: 35px;
+    cursor: pointer;
+}
+
+.editColumn .edit:hover{
+    font-weight: bold;
+}
+
+.editColumn .quantity{
+    width: 100px;
+    text-align: center;
+    border-bottom: 1px solid #29150e;
+    font-weight: bold;
+    cursor: default;
+}
+
+.total{
+    font-size: 25px;
+    font-family: 'Julius Sans One';
+    font-weight: bolder;
+    color: #29150e;
+}
+
+.total span{
+    font-weight: bold;
+    font-family: 'Marcellus';
+}
+
+.homeBtn{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+
+
+/* Responsive design for mobile */
+@media (max-width:600px){
+    .header{
+        height: 10vh;
+    }
+    
+    .data
+    {
+        transform: scale(0.95);
+    }
+    
+    .body{
+        height: 90vh;
+        width: 99.5%;
+    }
+    
+    th{
+        font-size: 18px;
+    }
+    
+    img{
+        width: 60px;
+        height: auto;
+    }
+    
+    .name{
+        font-size: 18px;
+    }
+    
+    .price{
+        font-size: 16px;
+    }
+    
+    .editColumn{
+        font-size: 18px;
+        width: 75px;
+    }
+    
+    .editColumn .edit{
+        font-size: 25px;
+    }
+        
+    .editColumn .quantity{
+        width: 25px;
+    }
+    
+    .total{
+        font-size: 18px;
+    }
+ 
+}

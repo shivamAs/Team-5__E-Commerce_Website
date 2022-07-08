@@ -1,0 +1,81 @@
+<link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
+<link href='https://fonts.googleapis.com/css?family=Marcellus' rel='stylesheet'>
+
+<div class="content">
+    <div class="homeBtn"><button class="btn btn-outline-dark" (click)="goToHome()">Back to home</button></div>
+    <div class="body">
+        <div class="data">
+            <table class="table table-hover table-responsive" style="text-align: center;" *ngIf="carryBox">
+
+                <!-- Carry box options -->
+                <tr>
+                    <td colspan="2" style="text-align: left;">
+                        <button class="btn btn-outline-danger" (click)="clearTheCarryBox()">Clear</button>
+                    </td>
+                    <td colspan="2" style="text-align: right;">
+                        <button class="btn btn-success" style="font-size: 20px;" (click)="placeOrder()">Check
+                            Out</button>
+                    </td>
+                </tr>
+
+
+                <!-- Carry box heading -->
+                <tr style="background-image: linear-gradient(to right, lightgrey, whitesmoke)">
+                    <th colspan="2">Item</th>
+                    <th>Cost</th>
+                    <th>Quantity</th>
+                </tr>
+
+
+                <!-- List of items in the carry box -->
+                <ng-container *ngFor="let obj of carryBox.itemlist">
+
+                    <!-- Design of an active item in the carrybox -->
+                    <tr *ngIf="obj.active">
+                        <td><img src="assets/Images/{{obj.picture}}"></td>
+                        <td class="name">{{obj.itemName}}</td>
+                        <td class="price">{{obj.itemPrice}}/-</td>
+                        <td>
+                            <div class="editColumn">
+                                <div class="edit" (click)="decreaseQuantity(obj.itemId)">-</div>
+                                <div class="quantity">{{carryBox.itemlist|filterCarryBoxItems:obj.itemId}}</div>
+                                <div class="edit" (click)="increaseQuantity(obj.itemId)">+</div>
+                            </div>
+                        </td>
+                    </tr>
+
+
+                    <!-- Design of an Inactive item in the carrybox -->
+                    <tr *ngIf="!obj.active" style="box-shadow: inset 0 0 0 2px red;">
+                        <td style="opacity: 0.7; pointer-events: none;"><img src="assets/Images/{{obj.picture}}"></td>
+                        <td style="opacity: 0.7; pointer-events: none;" class="name">{{obj.itemName}}</td>
+                        <td style="opacity: 0.7; pointer-events: none;" class="price">{{obj.itemPrice}}/-</td>
+                        <td>
+                            <button class="btn btn-dark" (click)="removeCarryBoxItem(obj.itemId)">Remove</button><br>
+                            <h6 class="text-danger" style="padding: 5px;">Currently Unavailable!</h6>
+                        </td>
+                    </tr>
+                </ng-container>
+
+                <!-- Total Cost of the carry box -->
+                <tr style="border-top: 2px solid #29150e;border-bottom: 2px solid #29150e;"
+                    *ngIf="carryBox.itemlist.length>0">
+                    <td colspan="2"></td>
+                    <td colspan="2" class="total">Total = <span>Rs. {{carryBox.total_cost}}/-</span></td>
+                </tr>
+
+
+                <!-- When the carrybox is empty, display message design -->
+                <tr *ngIf="carryBox.itemlist.length==0">
+                    <td colspan="4" class="text-danger text-center">
+                        <h5>No Items in your Carry Box !!</h5>
+                    </td>
+                </tr>
+            </table>
+
+            <div class="text-center">
+                <button class="btn btn-outline-dark" (click)="goToItems()">+ Add Items</button>
+            </div>
+        </div>
+    </div>
+</div>
