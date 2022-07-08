@@ -1,10 +1,10 @@
-# Team-2-Online-Banking-System
+# Team-5__E-Commerce_Website
 
 ## About
-V.A.S.P is an Angular web application which is made on Angular using Spring Boot and Oracle as databse. 
-- Admins can add new employees, approve the requests and make significant changes.
-- Employees can add new customers, approve the requests and make significant changes.
-- Customers can register, login and use the banking services with this application. 
+ELEF is an Angular web application which is made on Angular using Spring Boot and Oracle as databse. 
+- Admins can add new products, approve the requests and make significant changes.
+- Customers can register, login and use the website services with this application. 
+- Visitor can see the products.
 
 ## Frameworks/Tools used
 
@@ -45,16 +45,13 @@ ng serve
 # Login credentials :
 
 ## Admin :
-* Identifier : 11112222
-   Password : Varun@123
+* E-mail : shivam4uas@gmail.com
+   Password : Shivam@12
    
-## Employee :
-* Username : 22223333
-   Password : Aastha@123
  
 ## Customer :
-* Username : 33334444
-   Password : Ankith@123
+* E-mail : aswitha2@gmail.com
+   Password : Aswitha@143
 
 # Using Tech:
 
